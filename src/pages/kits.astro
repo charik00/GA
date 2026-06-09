@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/blocks/ga-faq-style.css';
+import '../styles/blocks/ga-prod-style.css';
+import '../styles/blocks/ga-catalog-style.css';
+import '../styles/blocks/ga-kits-style.css';
+import '../styles/pages/kits.css';
+import '../styles/blocks/qv-kit.css';
+import html from '../content/kits.html?raw';
+import js from '../scripts/kits.js?raw';
+const title = 'Kits, Genetic Analyze';
+---
+
+<Layout title={title} active="kits" mobileActive="kits">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+  <script>import '../scripts/cart-bridge.ts';</script>
+</Layout>

@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/pages/about.css';
+import html from '../content/about.html?raw';
+import js from '../scripts/about.js?raw';
+const title = 'About, Genetic Analyze';
+---
+
+<Layout title={title} active="about">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+</Layout>

@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/blocks/ga-faq-style.css';
+import '../../styles/blocks/ga-art-style.css';
+import '../../styles/pages/articles.css';
+import html from '../../content/articles.html?raw';
+import js from '../../scripts/articles.js?raw';
+const title = 'Articles, Genetic Analyze';
+---
+
+<Layout title={title} active="articles">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+</Layout>

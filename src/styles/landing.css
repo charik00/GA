@@ -1,0 +1,1209 @@
+    /* =============================================================
+       V7 — LIGHT MIX
+       Same V4 system, only backgrounds flip on selected sections.
+       Copy, typography, italic accents, bottles, capsule untouched.
+
+       Light:  Hero · Trust · Philosophy · Products · Articles
+       Dark :  For Whom · Kits · Final CTA · Footer  (unchanged)
+       ============================================================= */
+
+    :root {
+      --v7-bg:        #FAF7F2;   /* warmed: was #FFFFFF — unified cream palette */
+      --v7-soft:      #F2EDE4;   /* warmed: was #FAFAFA — slightly darker cream for product zone */
+      --v7-ink:       #1A1A1A;
+      --v7-ink-2:     #4A4A4A;
+      --v7-muted:     #6E6E70;
+      --v7-line:      #E5DFD5;   /* warmed: was #E8E8E8 — hairlines blend with cream */
+      --v7-line-2:    #ECE6DC;   /* warmed: was #F0F0F0 */
+      --v7-honey:     #C9A96E; /* honey unchanged */
+    }
+
+    /* Soften the global paper grain over light sections so it doesn't
+       muddy whites (still keeps the V4 grain elsewhere) */
+    body::before { opacity: 0.10; }
+
+    /* =============== HEADER over light hero =============== */
+    .header,
+    .header.scrolled {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: saturate(140%) blur(6px);
+      -webkit-backdrop-filter: saturate(140%) blur(6px);
+      border-bottom-color: var(--v7-line);
+    }
+    .header.scrolled { border-bottom-color: var(--v7-line); }
+    .header .logo .glyph { filter: brightness(0); }      /* gold PNG → black */
+    .header .logo .word  { color: var(--v7-muted); }
+    .header .logo .word b { color: var(--v7-ink); }
+    .header .nav         { color: var(--v7-ink); }
+    .header .nav a       { color: var(--v7-ink); opacity: 0.7; }
+    .header .nav a:hover,
+    .header .nav a.active { color: var(--v7-ink); opacity: 1; }
+    .header .nav a.active::after { background: var(--v7-ink); }
+    .header .lang        { color: var(--v7-muted); }
+    .header .lang button.on { color: var(--v7-ink); }
+    .header .lang .sep   { color: rgba(0,0,0,0.25); }
+    .header .btn.sm.solid {
+      background: var(--v7-ink); color: #FFFFFF; border-color: var(--v7-ink);
+    }
+    .header .btn.sm.solid:hover {
+      background: transparent; color: var(--v7-ink); border-color: var(--v7-ink);
+    }
+
+    /* =============== HERO (light) =============== */
+    .hero .hero-bg { background: var(--v7-bg); }
+    .hero .hero-content,
+    .hero h1,
+    .hero h1 span { color: var(--v7-ink); }
+    .hero h1 .em.italic { color: var(--v7-honey); } /* italic accent stays gold */
+    .hero .hero-sub { color: var(--v7-muted); }
+    .hero .hero-eyebrow { color: var(--v7-ink); }
+    .hero .hero-eyebrow::before { background: var(--v7-ink); }
+
+    /* Remove the cool overhead spotlight — it only reads on dark */
+    .hero .hero-stage::before { display: none; }
+
+    /* Subtle warm light pool behind the capsule so it sits on something */
+    .hero .hero-stage::after {
+      content: "";
+      position: absolute;
+      left: 50%; top: 52%;
+      width: 70%; height: 60%;
+      transform: translate(-50%, -50%);
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 50%, rgba(201,169,110,0.10), transparent 70%),
+        radial-gradient(ellipse 70% 30% at 50% 88%, rgba(0,0,0,0.06), transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Hero buttons → dark-on-light */
+    .hero .btn,
+    .hero .btn.solid,
+    .hero .btn.ghost {
+      color: var(--v7-ink);
+      border-color: var(--v7-ink);
+      background: transparent;
+    }
+    .hero .btn.solid {
+      background: var(--v7-ink);
+      color: #FFFFFF;
+      border-color: var(--v7-ink);
+    }
+    .hero .btn.solid:hover {
+      background: transparent;
+      color: var(--v7-ink);
+      border-color: var(--v7-ink);
+    }
+    .hero .btn.ghost {
+      border-color: rgba(26,26,26,0.4);
+    }
+    .hero .btn.ghost:hover {
+      background: var(--v7-ink); color: #FFFFFF; border-color: var(--v7-ink);
+    }
+    .hero .btn:not(.solid):hover {
+      background: var(--v7-ink); color: #FFFFFF; border-color: var(--v7-ink);
+    }
+
+    /* =============== TRUST (light) =============== */
+    .trust {
+      background: var(--v7-soft);
+      border-top: 1px solid var(--v7-line);
+      border-bottom: 1px solid var(--v7-line);
+    }
+    .trust .trust-icon  { color: var(--v7-ink); }
+    .trust .trust-label { color: var(--v7-muted); }
+    .trust .trust-item + .trust-item::before { background: var(--v7-line); }
+
+    /* =============== PHILOSOPHY (light) =============== */
+    #philosophy {
+      background: var(--v7-bg);
+    }
+    #philosophy .section-num    { color: var(--v7-ink); }
+    #philosophy .h-section      { color: var(--v7-ink); }
+    #philosophy .h-section .italic.honey { color: var(--v7-honey); }
+
+    #philosophy .phil-grid {}
+    #philosophy .phil-card {
+      background: #FAF7F2 !important;
+      border: 1px solid var(--v7-line);
+    }
+    #philosophy .phil-card::before { background: var(--v7-ink); }
+    #philosophy .phil-card:hover {
+      background: var(--v7-soft);
+      border-color: rgba(26,26,26,0.3);
+    }
+    #philosophy .phil-num  { color: var(--v7-ink); }
+    #philosophy .phil-card h3 { color: var(--v7-ink); }
+    #philosophy .phil-card p  { color: var(--v7-ink-2); }
+    #philosophy .phil-card .read {
+      color: var(--v7-ink);
+      border-top: 1px solid var(--v7-line);
+    }
+
+    /* =============== PRODUCTS / CATALOG (light) =============== */
+    #products {
+      background: var(--v7-soft);
+    }
+    #products .section-num   { color: var(--v7-ink); }
+    #products .h-section     { color: var(--v7-ink); }
+    #products .h-section .italic.honey { color: var(--v7-honey); }
+
+    #products .cat-grid {
+      background: var(--v7-line);       /* hairline grid */
+      border: 1px solid var(--v7-line);
+    }
+    #products .cat-card {
+      background: #FAF7F2 !important;
+    }
+    #products .cat-card:hover {
+      background: var(--v7-soft);
+    }
+    #products .cat-card::after { background: var(--v7-ink); }
+    #products .cat-bottle-photo { mix-blend-mode: normal; } /* lighten was for dark bg */
+    #products .cat-sku    { color: var(--v7-muted); }
+    #products .cat-name   { color: var(--v7-ink); }
+    #products .cat-slogan { color: var(--v7-muted); }
+    #products .cat-foot   {
+      color: var(--v7-muted);
+      border-top: 1px solid var(--v7-line);
+    }
+    #products .cat-foot .price { color: var(--v7-ink); }
+    #products .cat-foot .add   {
+      border-color: var(--v7-line);
+      color: var(--v7-ink);
+    }
+    #products .cat-card:hover .cat-foot .add {
+      background: var(--v7-ink); border-color: var(--v7-ink); color: #FFFFFF;
+    }
+    #products .btn,
+    #products .btn.ghost {
+      color: var(--v7-ink); border-color: var(--v7-ink);
+    }
+    #products .btn:hover {
+      background: var(--v7-ink); color: #FFFFFF; border-color: var(--v7-ink);
+    }
+
+    /* =============== ARTICLES (light) =============== */
+    #articles {
+      background: var(--v7-bg);
+      border-top: 1px solid var(--v7-line) !important; /* spec sets it via inline */
+    }
+    #articles .section-num   { color: var(--v7-ink); }
+    #articles .h-section     { color: var(--v7-ink); }
+    #articles .h-section .italic.honey { color: var(--v7-honey); }
+    /* the inline subtitle uses rgba(242,233,220,0.85) → overwrite */
+    #articles .section-head > div > p {
+      color: var(--v7-muted) !important;
+    }
+    #articles .art-card {
+      background: #FAF7F2 !important;
+      border: 1px solid var(--v7-line);
+    }
+    #articles .art-card:hover {
+      background: var(--v7-soft);
+      border-color: rgba(26,26,26,0.3);
+    }
+    #articles .art-eyebrow { color: var(--v7-ink); }
+    #articles .art-card h3 { color: var(--v7-ink); }
+    #articles .art-card:hover h3 { color: var(--v7-ink); }
+    #articles .art-card p  { color: var(--v7-ink-2); }
+    #articles .art-card__foot { border-top-color: var(--v7-line); }
+    #articles .art-time { color: var(--v7-muted); }
+    #articles .art-read { color: var(--v7-ink); }
+
+    /* =============== Selection on light sections =============== */
+    .hero ::selection,
+    .trust ::selection,
+    #philosophy ::selection,
+    #products ::selection,
+    #articles ::selection {
+      background: var(--v7-ink);
+      color: #FFFFFF;
+    }
+
+    /* =====================================================================
+       V7.1 PATCH — split hero, dark header, no gold, light Before/After.
+       Layered AFTER the V7 base so it wins on specificity & order.
+       ===================================================================== */
+
+    /* ---------- 1. SPLIT HERO ----------
+       Left half white, right half #1A1A1A. Full viewport height. */
+    .hero {
+      min-height: 100vh;
+      grid-template-columns: 1fr 1fr; /* equal halves */
+      padding: 0;                     /* fill the split edge-to-edge */
+      align-items: stretch;
+    }
+    .hero .hero-bg {
+      background: linear-gradient(to right, #FFFFFF 0%, #FFFFFF 50%, #1A1A1A 50%, #1A1A1A 100%);
+    }
+    .hero .hero-content {
+      align-self: center;
+      padding: 120px 56px 80px clamp(56px, 7vw, 128px);
+      max-width: 720px;
+      color: var(--v7-ink);
+    }
+    .hero .hero-visual {
+      height: auto;
+      min-height: 100vh;
+      padding: 0;
+      background: #1A1A1A;             /* belt-and-braces in case grid-template-columns changes */
+      align-self: stretch;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Kill the cool overhead spotlight + warm pool from earlier override —
+       the capsule's own dark explosion now blends with the dark panel. */
+    .hero .hero-stage::before,
+    .hero .hero-stage::after { display: none !important; content: none !important; }
+    .hero .hero-capsule-wrap {
+      transform: scale(1.05);          /* less aggressive — capsule reads cleaner on the dark panel */
+    }
+    .hero .hero-capsule-photo { max-height: 80vh; }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero .hero-bg {
+        background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 50%, #1A1A1A 50%, #1A1A1A 100%);
+      }
+      .hero .hero-content { padding: 100px 24px 56px; }
+      .hero .hero-visual  { min-height: 60vh; height: 60vh; }
+    }
+
+    /* ---------- 2. DARK HEADER ---------- */
+    .header,
+    .header.scrolled {
+      background: #2A2A2A;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom-color: rgba(255,255,255,0.10);
+    }
+    .header .logo .glyph { filter: brightness(0) invert(1); } /* white glyph */
+    .header .logo .word  { color: rgba(255,255,255,0.6); }
+    .header .logo .word b { color: #FFFFFF; }
+    .header .nav a       { color: #FFFFFF; opacity: 0.8; }
+    .header .nav a:hover { color: #FFFFFF; opacity: 1; }
+    .header .nav a.active{ color: #FFFFFF; opacity: 1; }
+    .header .nav a.active::after { background: #FFFFFF; }
+    .header .lang        { color: rgba(255,255,255,0.6); }
+    .header .lang button { color: rgba(255,255,255,0.6); }
+    .header .lang button.on { color: #FFFFFF; }
+    .header .lang .sep   { color: rgba(255,255,255,0.3); }
+    .header .btn.sm.solid,
+    .header .btn.sm {
+      background: transparent;
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+    }
+    .header .btn.sm.solid:hover,
+    .header .btn.sm:hover {
+      background: #FFFFFF;
+      color: #1A1A1A;
+      border-color: #FFFFFF;
+    }
+
+    /* ---------- 3. NO GOLD ANYWHERE ---------- */
+    /* On LIGHT backgrounds → neutral ink */
+    .hero h1 .em.italic,
+    #philosophy .h-section .italic.honey,
+    #philosophy .h-section .italic,
+    #products .h-section .italic.honey,
+    #products .h-section .italic,
+    #articles .h-section .italic.honey,
+    #articles .h-section .italic {
+      color: var(--v7-ink) !important;
+    }
+
+    /* On DARK backgrounds → white */
+    #forwhom .em.honey,
+    #forwhom .h-section .italic,
+    .kits .h-section .italic.honey,
+    .kits .h-section .italic,
+    .final-cta .h-display .em,
+    .final-cta .h-display .italic {
+      color: #FFFFFF !important;
+    }
+
+    /* Strip every other gold accent globally */
+    .honey { color: inherit !important; }
+    ::selection { background: #1A1A1A; color: #FFFFFF; }
+
+    /* The scroll-hint vertical gold line → neutral white gradient */
+    .scroll-hint .line {
+      background: linear-gradient(180deg, transparent, rgba(255,255,255,0.6) 50%, transparent);
+    }
+
+    /* The kits cream-paper hint, BA-band borders & cat-foot price gold accents — neutralize */
+    .ba-band {
+      border-top-color: rgba(0,0,0,0.08) !important;
+      border-bottom-color: rgba(0,0,0,0.08) !important;
+    }
+
+    /* ---------- 4. BEFORE / AFTER BAND → LIGHT ---------- */
+    .ba-band {
+      background: #FAF7F2 !important;
+      border-top: 1px solid var(--v7-line);
+      border-bottom: 1px solid var(--v7-line);
+    }
+    .ba-band .e,
+    .ba-band .e.left,
+    .ba-band .e.right {
+      color: var(--v7-ink);
+    }
+    .ba-band__lines {
+      position: relative;
+      padding: clamp(28px, 4vw, 56px) 0;
+    }
+    /* thin horizontal divider between the two italic lines */
+    .ba-band__lines::before {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 50%;
+      height: 1px;
+      background: var(--v7-line);
+      transform: translateY(-50%);
+    }
+    .ba-band__line.before,
+    .ba-band__line.after {
+      color: var(--v7-ink);
+    }
+
+    /* =====================================================================
+       V7.2 PATCH — cancel split, full-light hero w/ still-life,
+       graphite #3E3E3E for all dark sections, light product cards.
+       ===================================================================== */
+    :root {
+      --v7-graphite:   #3E3E3E;
+      --v7-graphite-2: #4A4A4A;
+      --v7-graphite-line: rgba(255,255,255,0.12);
+      --v7-cream:      #FAF7F2;
+
+      /* Flip ALL V4 dark vars → graphite (kills #0F0F10 / #161618 / #1E1E20) */
+      --bg:   #3E3E3E;
+      --bg-2: #3E3E3E;
+      --bg-3: #4A4A4A;
+
+      /* Strip every honey reference (V4 fallback color) */
+      --honey:       #1A1A1A;
+      --honey-2:     #1A1A1A;
+      --honey-soft:  rgba(26,26,26,0.5);
+      --honey-ghost: rgba(26,26,26,0.10);
+      --sage:        #1A1A1A;
+      --terra:       #1A1A1A;
+    }
+    html, body { background: var(--v7-graphite); }
+
+    /* ---------- 1. HERO — single full-light layout, still-life right ---------- */
+    .hero {
+      min-height: 100vh;
+      grid-template-columns: 1.05fr 1fr;
+      padding: 0;
+      align-items: stretch;
+      background: var(--v7-cream);
+    }
+    .hero .hero-bg { background: var(--v7-cream) !important; }
+    .hero .hero-content {
+      align-self: center;
+      padding: 130px 56px 90px clamp(56px, 7vw, 128px);
+      max-width: 720px;
+      color: var(--v7-ink);
+    }
+    .hero .hero-visual {
+      background: transparent !important;
+      height: auto;
+      min-height: 100vh;
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+    }
+    .hero .hero-stage {
+      width: 100%; height: 100%;
+      display: block;
+      position: relative;
+    }
+    .hero .hero-stage::before,
+    .hero .hero-stage::after { display: none !important; content: none !important; }
+    .hero .hero-capsule-wrap {
+      transform: none;
+      width: 100%; height: 100%;
+      display: block;
+      position: relative;
+    }
+    /* Still-life image fills right side, cream linen blends into hero bg */
+    .hero .hero-capsule-photo {
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover;
+      object-position: center;
+      animation: none;
+      mix-blend-mode: multiply;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero .hero-content { padding: 100px 24px 56px; }
+      .hero .hero-visual  { min-height: 60vh; height: 60vh; }
+    }
+
+    /* ---------- 2. GRAPHITE #3E3E3E EVERYWHERE that was dark ---------- */
+    .header,
+    .header.scrolled {
+      background: var(--v7-graphite) !important;
+      border-bottom-color: var(--v7-graphite-line);
+    }
+
+    /* For Whom — give it an explicit graphite bg + flip text colors */
+    #forwhom { background: var(--v7-graphite); padding-top: 100px; padding-bottom: 100px; }
+    #forwhom .section-num { color: #FFFFFF; }
+    #forwhom .h-section,
+    #forwhom .h-section .em,
+    #forwhom .h-section .italic { color: #FFFFFF !important; }
+    #forwhom .forwhom-body { color: rgba(255,255,255,0.78); }
+    #forwhom .forwhom-body::before { background: linear-gradient(180deg, #FFFFFF, transparent); }
+
+    .kits { background: var(--v7-graphite); border-color: var(--v7-graphite-line); }
+    .kits::before { display: none; }
+    .kits .kit { background: var(--v7-graphite-2); border-color: var(--v7-graphite-line); }
+    .kits .kit:hover { background: var(--v7-graphite); border-color: #FFFFFF; }
+
+    .final-cta {
+      background: var(--v7-graphite) !important;
+      border-top-color: var(--v7-graphite-line);
+    }
+    .final-cta::before,
+    .final-cta::after { display: none; }
+
+    .footer { background: var(--v7-graphite); border-top-color: var(--v7-graphite-line); }
+    .footer-bottom { border-top-color: var(--v7-graphite-line); }
+
+    /* ---------- FOOTER → LIGHT INVERSION ----------
+       Color-only flip of just the footer block. Everything above (incl. Final CTA)
+       stays graphite. */
+    .footer {
+      background: #F2EDE4 !important;             /* cream — same as Products section */
+      border-top-color: #E5DFD5 !important;       /* warm hairline */
+    }
+    .footer,
+    .footer h4,
+    .footer ul li,
+    .footer ul a,
+    .footer-brand .logo,
+    .footer-brand .logo .word,
+    .footer-brand .logo .word b,
+    .footer-bottom,
+    .footer-bottom a,
+    .footer-bottom div,
+    .footer-bottom span {
+      color: #3E3E3E !important;
+    }
+    .footer-disclaimer { color: #6B6B6B !important; }      /* softer secondary */
+    .footer ul a:hover { color: #1A1A1A !important; }      /* darker on hover, not white */
+    .footer-bottom { border-top-color: #E5DFD5 !important; }
+    .footer-social a {
+      border-color: #E5DFD5 !important;
+      color: #3E3E3E !important;
+    }
+    .footer-social a:hover {
+      border-color: #3E3E3E !important;
+      color: #3E3E3E !important;
+      background: transparent !important;
+    }
+    /* Logo glyph PNG: default rule inverts it to white for dark bg —
+       reset that and tint it to the ink color */
+    .footer .logo .glyph {
+      filter: brightness(0) !important;
+      opacity: 0.78;                                       /* black @ 78% on cream ≈ #3E3E3E */
+    }
+
+    /* ---------- 3. PRODUCT CARDS — light w/ hairline + category bars ---------- */
+    #products .cat-grid {
+      background: transparent;
+      border: 0;
+      gap: 24px;
+    }
+    #products .cat-card {
+      background: #FAF7F2 !important;
+      border: 1px solid var(--v7-line);
+      border-radius: 4px;
+      padding: 32px 28px 28px;
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+    #products .cat-card::after { display: none; }
+    #products .cat-card:hover {
+      background: #FAF7F2 !important;
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.06);
+      border-color: rgba(26,26,26,0.18);
+    }
+    #products .cat-bottle { background: transparent; }
+    #products .cat-bottle-photo { mix-blend-mode: normal; }
+
+    /* Category bar under product name */
+    #products .cat-meta { gap: 6px; }
+    #products .cat-bar {
+      width: 56px;
+      height: 2px;
+      margin-top: 10px;
+      background: var(--v7-line);
+      transition: width 0.4s ease;
+    }
+    #products .cat-card:hover .cat-bar { width: 100%; }
+
+    #products .cat-foot { border-top-color: var(--v7-line); color: var(--v7-muted); }
+    #products .cat-foot .price { color: var(--v7-ink); }
+    #products .cat-foot .add { border-color: var(--v7-line); color: var(--v7-ink); }
+    #products .cat-card:hover .cat-foot .add {
+      background: var(--v7-ink); border-color: var(--v7-ink); color: #FFFFFF;
+    }
+
+    /* ---------- LEARN MORE text link (replaces "+" circle on cards) ---------- */
+    #products .cat-foot .add,
+    #products .cat-card:hover .cat-foot .add {
+      width: auto !important;
+      height: auto !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      padding: 0 !important;
+      font-family: var(--mono) !important;
+      font-size: 11px !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase !important;
+      color: #3E3E3E !important;
+      cursor: pointer;
+      border-bottom: 1px solid transparent !important;
+      transition: border-bottom-color 0.25s ease !important;
+      display: inline-block !important;
+      line-height: 1.4 !important;
+    }
+    #products .cat-foot .add svg { display: none !important; }
+    #products .cat-card:hover .cat-foot .add {
+      border-bottom-color: #3E3E3E !important;
+    }
+
+    /* ---------- 4. NO GOLD (catch any leftover) ---------- */
+    .honey, .em.honey, .italic.honey { color: inherit !important; }
+    /* dark sections — italic in white */
+    #forwhom .h-section .em.honey,
+    #forwhom .h-section .italic.honey,
+    .kits .h-section .em,
+    .kits .h-section .italic,
+    .kits .h-section .em.honey,
+    .kits .h-section .italic.honey,
+    .final-cta .h-display .em,
+    .final-cta .h-display .italic { color: #FFFFFF !important; }
+    /* light sections — italic in dark ink */
+    .hero .h-display .em,
+    .hero .h-display .italic,
+    #philosophy .h-section .em,
+    #philosophy .h-section .italic,
+    #philosophy .h-section .em.honey,
+    #philosophy .h-section .italic.honey,
+    #products .h-section .em,
+    #products .h-section .italic,
+    #products .h-section .em.honey,
+    #products .h-section .italic.honey,
+    #articles .h-section .em,
+    #articles .h-section .italic,
+    #articles .h-section .em.honey,
+    #articles .h-section .italic.honey { color: var(--v7-ink) !important; }
+    /* BA band before/after italic in dark */
+    .ba-band__line.before, .ba-band__line.after { color: var(--v7-ink) !important; }
+
+    /* =====================================================================
+       V7.3 PATCH — hard vertical hero split, outlined "Our Philosophy"
+       ===================================================================== */
+
+    /* Hero is now an exact 50/50 split. Left half stays solid cream;
+       still-life is fully clipped to the right column with a clean edge. */
+    .hero {
+      grid-template-columns: 1fr 1fr;
+      background: var(--v7-cream);
+    }
+    .hero .hero-bg {
+      background: var(--v7-cream) !important;
+      /* belt-and-braces: don't leak the linen into the left column */
+      width: 50%;
+      right: auto;
+    }
+    .hero .hero-content {
+      position: relative;
+      z-index: 2;
+      background: var(--v7-cream);                    /* solid floor for text */
+      padding: 130px 64px 90px clamp(56px, 7vw, 128px);
+    }
+    .hero .hero-visual {
+      position: relative;
+      overflow: hidden;                                /* hard clip at column edge */
+      background: var(--v7-cream) !important;
+    }
+    .hero .hero-capsule-photo {
+      mix-blend-mode: normal !important;               /* no blend bleed */
+      object-fit: cover !important;                    /* generous margin in source means subjects stay safe */
+      object-position: center center !important;
+      background: #FAF7F2 !important;                  /* matches left half cream */
+    }
+    .hero .hero-visual,
+    .hero .hero-stage,
+    .hero .hero-capsule-wrap {
+      background: #FAF7F2 !important;                  /* clean cream zone behind image */
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero .hero-bg { width: 100%; }
+      .hero .hero-capsule-photo { object-position: center; }
+    }
+
+    /* CTAs: graphite-solid + clean outlined */
+    .hero .btn.solid,
+    .hero .hero-actions .btn.solid {
+      background: var(--v7-graphite) !important;
+      color: #FFFFFF !important;
+      border: 1.5px solid var(--v7-graphite) !important;
+    }
+    .hero .btn.solid:hover {
+      background: #1A1A1A !important;
+      border-color: #1A1A1A !important;
+      color: #FFFFFF !important;
+    }
+    .hero .btn.ghost,
+    .hero .hero-actions .btn.ghost {
+      background: transparent !important;
+      color: var(--v7-ink) !important;
+      border: 1.5px solid var(--v7-graphite) !important;
+    }
+    .hero .btn.ghost:hover {
+      background: var(--v7-graphite) !important;
+      color: #FFFFFF !important;
+      border-color: var(--v7-graphite) !important;
+    }
+
+    /* =====================================================================
+       V7.4 — brand-color accents (hairlines only, no fills)
+       ===================================================================== */
+
+    /* Section-num leading em-dash colorization */
+    .section-num .snum-dash { color: inherit; }
+    #forwhom    .section-num .snum-dash { color: #6FA284 !important; }   /* graphite — green +15% */
+    #philosophy .section-num .snum-dash { color: #5B7CA8 !important; }   /* cream — blue */
+    #products   .section-num .snum-dash { color: #C97A6E !important; }   /* cream — coral */
+    .kits       .section-num .snum-dash { color: #E8C26F !important; }   /* graphite — yellow +15% */
+    #articles   .section-num .snum-dash { color: #6B9BA8 !important; }   /* cream — teal */
+    .final-cta  .section-num .snum-dash { color: #E1A87B !important; }   /* graphite — orange +15% */
+
+    /* Article eyebrow leading dash */
+    #articles .art-card:nth-child(1) .art-eyebrow .snum-dash { color: #4A7C59 !important; }  /* green */
+    #articles .art-card:nth-child(2) .art-eyebrow .snum-dash { color: #5B7CA8 !important; }  /* blue */
+
+    /* Philosophy cards top hairline — brand colors, preserves existing scaleX animation */
+    #philosophy .phil-card:nth-child(1)::before { background: #4A7C59 !important; }  /* green */
+    #philosophy .phil-card:nth-child(2)::before { background: #5B7CA8 !important; }  /* blue */
+    #philosophy .phil-card:nth-child(3)::before { background: #C97A6E !important; }  /* coral */
+
+    /* Kits — small 2px × 40px accent bar above each kit title (graphite bg → brightened colors) */
+    .kits .kit .kit-body { position: relative; }
+    .kits .kit .kit-body::before {
+      content: "";
+      display: block;
+      width: 40px;
+      height: 2px;
+      background: rgba(255,255,255,0.4);             /* fallback */
+      margin: 0 0 8px;
+    }
+    .kits .kit:nth-child(1) .kit-body::before { background: #7E9FC5; }  /* Vital Man Pro — blue +15% */
+    .kits .kit:nth-child(2) .kit-body::before { background: #6FA284; }  /* Digestive Reset — green +15% */
+    .kits .kit:nth-child(3) .kit-body::before { background: #D26565; }  /* Female Blood Balance — red +15% */
+    .kits .kit:nth-child(4) .kit-body::before { background: #D26565; }  /* Calm & Heart — red +15% */
+    .kits .kit:nth-child(5) .kit-body::before { background: #ADBE85; }  /* Men Hair Vitality — olive +15% */
+    .kits .kit:nth-child(6) .kit-body::before { background: #85B5C2; }  /* Aesthetic Recovery — teal +15% */
+    /* =====================================================================
+       V7.5 — hero ratio 40/60, larger headline & nav, hero eyebrow trim
+       ===================================================================== */
+
+    /* Hero columns 50/50 — equal halves */
+    .hero { grid-template-columns: 1fr 1fr !important; }
+    .hero .hero-bg { width: 50% !important; }
+
+    /* Equalize hero CTA widths so both pills are identical AND side-by-side */
+    .hero .hero-actions {
+      display: flex !important;
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+      align-items: center !important;
+      gap: 16px !important;
+    }
+    .hero .hero-actions > .btn,
+    .hero .hero-actions > a,
+    .hero .hero-actions > button {
+      width: 240px !important;
+      min-width: 240px !important;
+      max-width: 240px !important;
+      flex: 0 0 240px !important;
+      box-sizing: border-box !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      white-space: nowrap !important;
+    }
+
+    /* Larger headline only on the hero (~18% bump) */
+    .hero .h-display {
+      font-size: clamp(40px, 5.8vw, 92px) !important;
+      line-height: 1.04;
+    }
+
+    /* Header nav / lang / shop-now — ~12% bigger */
+    .header .nav {
+      font-size: clamp(15px, 1.08vw, 18px) !important;
+    }
+    .header .lang {
+      font-size: 13.5px !important;
+    }
+    .header .btn.sm {
+      font-size: 11.5px !important;
+      height: 44px;
+    }
+
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr !important; }
+      .hero .hero-bg { width: 100% !important; }
+    }
+
+    /* =====================================================================
+       V7.6 — orphan fix on hero headline + header serif/sans hierarchy
+       ===================================================================== */
+
+    /* Fix 1 — headline: bumped upper cap + balanced wrap. &nbsp; in markup
+       keeps "preserved it." glued so "it." never orphans. */
+    .hero .h-display {
+      font-size: clamp(44px, 6.2vw, 92px) !important;
+      line-height: 1.04;
+      text-wrap: balance;
+    }
+
+    /* Reduce left column horizontal padding so the larger headline fits */
+    .hero .hero-content {
+      padding: 130px 40px 90px clamp(40px, 4.8vw, 88px) !important;
+    }
+
+    /* Trust strip directly under the hero CTAs — content-based wrap */
+    .hero .hero-trust {
+      margin-top: 32px;
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      font-size: 10.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #8A857A;
+      display: flex;
+      flex-wrap: wrap !important;
+      gap: 10px 14px;
+      align-items: center;
+      white-space: normal !important;
+      max-width: 100%;
+      line-height: 1.4;
+    }
+    .hero .hero-trust > span:not(.dot) { white-space: nowrap; }
+    .hero .hero-trust .dot { opacity: 0.5; }
+
+    /* Fix 2 — Header hierarchy: serif logo vs. sans-serif everything else.
+       The logo keeps its serif (inherited from .logo .word); we override nav,
+       lang switcher and SHOP NOW to a clean geometric sans. */
+    .header .nav,
+    .header .nav a,
+    .header .lang,
+    .header .lang button {
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.05em !important;
+    }
+    .header .btn.sm,
+    .header .btn.sm.solid {
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif !important;
+      font-weight: 400 !important;
+      text-transform: uppercase;
+      letter-spacing: 0.15em !important;
+      white-space: nowrap;            /* Fix 3 — SHOP NOW one line */
+    }
+
+    /* Logo: keep serif, give it a touch more presence as a wordmark */
+    .header .logo .word,
+    .header .logo .word b {
+      letter-spacing: 0.02em;
+    }
+    .header .logo .word b {
+      font-size: 1.05em;              /* very slight bump */
+    }
+
+    /* =====================================================================
+       V7.7 — header repair: dominant serif logo, smaller sans nav,
+              hero image fills its column edge-to-edge
+       ===================================================================== */
+
+    /* Fix 1 — restore wordmark as the dominant element in the header */
+    .header .logo {
+      gap: 12px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .header .logo .glyph {
+      width: 40px;
+      height: 40px;
+    }
+    /* .word is the tiny uppercase context line (empty in header) — keep it
+       quiet so the serif wordmark below it can dominate. */
+    .header .logo .word {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(20px, 1.7vw, 26px) !important;   /* establishes em for <b> */
+      font-weight: 400 !important;
+      letter-spacing: 0.02em !important;
+      text-transform: none !important;
+      color: #FAF7F2 !important;
+      line-height: 1.1;
+    }
+    .header .logo .word b {
+      display: inline;                                  /* sit on the same baseline */
+      font-family: 'Cormorant Garamond', serif !important;
+      font-size: 1em !important;                        /* inherit from .word, no shrink */
+      font-weight: 400 !important;
+      letter-spacing: 0.02em !important;
+      color: #FAF7F2 !important;
+      margin: 0;
+    }
+
+    /* Fix 2 — nav + lang smaller and clearly secondary */
+    .header .nav,
+    .header .nav a {
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif !important;
+      font-size: 14.5px !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.05em !important;
+      color: #FAF7F2 !important;
+    }
+    .header .lang,
+    .header .lang button {
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif !important;
+      font-size: 14px !important;
+      font-weight: 300 !important;
+      letter-spacing: 0.05em !important;
+      color: #FAF7F2 !important;
+    }
+    .header .lang button.on { color: #FAF7F2 !important; opacity: 1; }
+    .header .lang button:not(.on) { opacity: 0.55; }
+
+    .header .btn.sm,
+    .header .btn.sm.solid {
+      font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif !important;
+      font-size: 13px !important;
+      font-weight: 400 !important;
+      letter-spacing: 0.15em !important;
+      text-transform: uppercase;
+      white-space: nowrap;
+      color: #FAF7F2 !important;
+      border-color: #FAF7F2 !important;
+      background: transparent !important;
+    }
+    .header .btn.sm:hover,
+    .header .btn.sm.solid:hover {
+      background: #FAF7F2 !important;
+      color: #1A1A1A !important;
+      border-color: #FAF7F2 !important;
+    }
+
+    /* Fix 3 — hero image must bleed to all four edges of the right column */
+    .hero .hero-visual {
+      padding: 0 !important;
+      overflow: hidden;
+      min-width: 0;
+    }
+    .hero .hero-stage,
+    .hero .hero-capsule-wrap {
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      display: block !important;
+      transform: none !important;
+    }
+    .hero .hero-capsule-photo {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      object-position: center !important;
+      display: block !important;
+      animation: none !important;
+      mix-blend-mode: normal !important;
+    }
+
+    /* =====================================================================
+       V7.7 — Before / After band: subtle category color accents.
+       Background stays cream; italic prose stays graphite; centered
+       alignment preserved by using a small colored dot before each line. */
+    .ba-band .e.left  { color: #B84A4A !important; }   /* — Before */
+    .ba-band .e.right { color: #4A7C59 !important; }   /* After — */
+
+    /* Restore the graphite text on the two italic lines (was overridden
+       above by V7.4 to var(--v7-ink) !important — that's fine, we keep it). */
+    .ba-band__line.before,
+    .ba-band__line.after { color: #3E3E3E !important; }
+
+    /* Small leading dot in the category color before each italic line.
+       Inline-block + middle align keeps the sentence visually centered. */
+    .ba-band__line.before::before,
+    .ba-band__line.after::before {
+      content: "";
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      vertical-align: middle;
+      margin-right: 14px;
+      transform: translateY(-2px);
+    }
+    .ba-band__line.before::before { background: #B84A4A; }
+    .ba-band__line.after::before  { background: #4A7C59; }
+
+    /* Divider line between the two italic lines: gradient red → green */
+    .ba-band__lines::before {
+      background: linear-gradient(to right, #B84A4A 0%, #4A7C59 100%) !important;
+      height: 1px !important;
+      opacity: 0.55;
+    }
+
+    /* =====================================================================
+       V10 — Full-bleed hero. Photo fills the entire section; text overlays
+       the top portion on a cream-fade "clean zone" so the linen breathes.
+       ===================================================================== */
+    .hero {
+      position: relative !important;
+      display: block !important;
+      flex-direction: initial !important;
+      align-items: initial !important;
+      justify-content: initial !important;
+      grid-template-columns: none !important;
+      min-height: 100vh;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--v7-cream) !important;
+      isolation: isolate;
+      padding: 0 !important;
+    }
+
+    /* Image layer — fills the entire hero, anchored to bottom so the
+       ingredient band reads at the bottom and the linen/shadows fill above. */
+    .hero .hero-bg { display: none !important; }
+    .hero .hero-visual {
+      position: absolute !important;
+      inset: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      top: 0 !important;
+      bottom: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      overflow: hidden !important;
+      z-index: 0 !important;
+    }
+    .hero .hero-stage,
+    .hero .hero-capsule-wrap {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      transform: none !important;
+      background: transparent !important;
+    }
+    .hero .hero-capsule-photo {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      object-position: center bottom !important;
+      display: block !important;
+      mix-blend-mode: normal !important;
+    }
+    /* Drop the seam fade — photo now fills the whole hero, no seam needed */
+    .hero .hero-visual::before { content: none !important; display: none !important; }
+
+    /* Cream wash from the top — protects text on shadow patches, fades
+       to transparent before the ingredient band starts. */
+    .hero::before {
+      content: "" !important;
+      display: block !important;
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 60%;
+      background: linear-gradient(
+        to bottom,
+        rgba(245, 240, 230, 0.85) 0%,
+        rgba(245, 240, 230, 0.65) 40%,
+        rgba(245, 240, 230, 0.30) 75%,
+        rgba(245, 240, 230, 0)    100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero::after { content: none !important; display: none !important; }
+
+    /* Text overlay — centered horizontally in the top portion */
+    .hero .hero-content {
+      position: relative !important;
+      z-index: 2 !important;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      background: transparent !important;
+      text-align: center;
+      padding: 132px clamp(24px, 4vw, 56px) 0 !important;
+      transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Eyebrow + sub + actions + trust — all centered within the column */
+    .hero .hero-eyebrow   { justify-content: center; align-self: center; }
+    .hero .hero-sub       { margin: 36px auto 0; max-width: 640px; }
+    .hero .hero-actions   { justify-content: center !important; align-self: center; margin-top: 44px !important; }
+    .hero .hero-trust     { justify-content: center !important; align-self: center; }
+
+    /* Headline — editorial, two clean centered lines */
+    .hero .h-display {
+      font-size: clamp(44px, 5.0vw, 72px) !important;
+      line-height: 1.06;
+      text-wrap: balance;
+      text-align: center;
+      text-shadow: none !important;
+    }
+
+    /* Copy color — no text-shadow, contrast comes from the cream wash */
+    .hero .h-display,
+    .hero .hero-eyebrow   { color: #1A1A1A !important; }
+    .hero .hero-sub,
+    .hero .hero-trust     { color: #2D2D2D !important; }
+    .hero .h-display,
+    .hero .hero-sub,
+    .hero .hero-trust     { text-shadow: none !important; }
+
+    /* ----- Mobile / tablet portrait ------------------------------------ */
+    @media (max-width: 1024px) {
+      .hero { min-height: 100vh; height: 100vh; }
+      .hero .hero-visual { height: 100% !important; }
+      .hero .hero-capsule-photo { object-position: center bottom !important; }
+      .hero::before { height: 65%; }
+
+      .hero .hero-content {
+        max-width: none;
+        padding: 122px 20px 0 !important;   /* clear the fixed header on phones */
+        margin: 0 auto;
+        transform: none;
+      }
+      .hero .h-display { font-size: clamp(38px, 8.2vw, 46px) !important; }
+      .hero .hero-eyebrow {
+        justify-content: center;
+        display: inline-flex;
+        margin: 0 auto;
+      }
+      .hero .hero-actions {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+      }
+      .hero .hero-actions > .btn,
+      .hero .hero-actions > a {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        flex: 1 1 100% !important;
+      }
+      .hero .hero-trust {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 8px !important;
+        text-align: center;
+      }
+      .hero .hero-trust .dot { display: none !important; }
+    }
+
+/* P2.5 — align Home kit cards: 2-line title block keeps slogans/dividers level */
+.kits .kit h3 { min-height: 2.4em; display: flex; align-items: flex-start; }
+.kits .kits-grid { align-items: stretch; }
+
+/* ===== Articles section: centered heading + cards/photo two-column (review) ===== */
+#articles .art-head { text-align: center; max-width: 860px; margin: 0 auto clamp(40px, 5vh, 60px); }
+#articles .art-head .section-num { display: block; margin-bottom: 16px; }
+#articles .art-title {
+  font-family: var(--display);
+  font-weight: 400;
+  color: #3E3E3E;
+  font-size: clamp(36px, 4.4vw, 60px);
+  line-height: 1.06;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  margin: 0;
+}
+#articles .art-title .italic { font-style: italic; color: #3E3E3E !important; }
+#articles .art-sub {
+  font-family: var(--sans);
+  color: var(--v7-muted) !important;
+  font-weight: 400;
+  font-size: clamp(16px, 1.2vw, 19px);
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 22px auto 0;
+}
+
+#articles .art-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.56fr);
+  gap: clamp(28px, 3vw, 52px);
+  align-items: stretch;             /* photo drives height, cards fill to match */
+}
+#articles .art-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   /* card 1 top, card 2 bottom = aligned with photo */
+  gap: clamp(20px, 2.4vw, 28px);
+}
+#articles .art-photo-wrap { margin: 0; display: block; }
+#articles .art-photo {
+  display: block;
+  width: 100%;
+  height: auto;                     /* natural aspect ratio, never stretched */
+  border-radius: 14px;
+  box-shadow: 0 34px 70px -30px rgba(26, 26, 26, 0.45);
+  background: var(--v7-soft);       /* placeholder tone until the image is added */
+}
+
+/* per-card terracotta accent: card 1 warmer, card 2 deeper */
+#articles .art-card { position: relative; overflow: hidden; }
+#articles .art-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--art-acc);
+}
+#articles .art-card--1 { --art-acc: #B26A4A; }
+#articles .art-card--2 { --art-acc: #9A4B33; }
+#articles .art-card--1 .art-eyebrow { color: #B26A4A !important; }
+#articles .art-card--2 .art-eyebrow { color: #9A4B33 !important; }
+
+/* mobile: centered heading, then the two cards, then the photo */
+@media (max-width: 860px) {
+  #articles .art-layout { grid-template-columns: 1fr; gap: 22px; }
+  #articles .art-cards { gap: 16px; }
+}

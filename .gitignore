@@ -1,0 +1,19 @@
+# build output
+dist/
+.output/
+.vercel/
+
+# deps
+node_modules/
+
+# astro
+.astro/
+
+# env (secrets — Web3Forms key, Telegram token/chat_id live here, never commit)
+.env
+.env.production
+.env*.local
+
+# os / editor
+.DS_Store
+*.log

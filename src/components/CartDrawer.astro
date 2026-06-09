@@ -1,0 +1,140 @@
+---
+import { useTranslations, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="ga-cart" id="ga-cart" aria-hidden="true">
+  <div class="ga-cart-veil" data-cart-close></div>
+  <aside class="ga-cart-panel" role="dialog" aria-modal="true" aria-label="Your cart">
+    <div class="ga-cart-bar">
+      <h2 class="ga-cart-title">{t('cart.title')}</h2>
+      <button class="ga-cart-close" type="button" data-cart-close aria-label="Close cart"></button>
+    </div>
+    <div class="ga-cart-body" id="ga-cart-body"></div>
+    <div class="ga-cart-foot" id="ga-cart-foot">
+      <div class="ga-cart-sub"><span class="k">{t('cart.subtotal')}</span><span class="v" id="ga-cart-subtotal">0 <span class="cur">₪</span></span></div>
+      <p class="ga-cart-ship">{t('cart.ship')}</p>
+      <a class="ga-cart-checkout" href="/checkout">{t('cart.checkout')}<span class="arrow">&rarr;</span></a>
+    </div>
+  </aside>
+</div>
+
+<script>
+  // Cart store + drawer. Exposed as window.GACart so product/kit "Add" buttons
+  // (wired in Step 3) can push items and open the drawer.
+  interface CartItem { id: string; name: string; kind: string; price: number | null; qty: number; img: string }
+
+  const KEY = 'ga-cart';
+  const T = {
+    each: 'each',
+    request: 'Price on request',
+    empty: 'Your cart is empty',
+    browse: 'Browse formulas',
+    browseHref: '/products',
+  };
+
+  const overlay = document.getElementById('ga-cart');
+  const bodyEl = document.getElementById('ga-cart-body');
+  const footEl = document.getElementById('ga-cart-foot');
+  const subEl = document.getElementById('ga-cart-subtotal');
+
+  function read(): CartItem[] {
+    try {
+      const v = JSON.parse(localStorage.getItem(KEY) || '[]');
+      return Array.isArray(v) ? v : [];
+    } catch { return []; }
+  }
+  let cart: CartItem[] = read();
+  function write() {
+    try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch {}
+  }
+  const fmt = (n: number) => n.toLocaleString('en-US');
+
+  function badges() {
+    const q = cart.reduce((s, i) => s + i.qty, 0);
+    document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach((b) => {
+      b.textContent = String(q);
+      b.hidden = q === 0;
+    });
+  }
+
+  function render() {
+    if (!bodyEl || !footEl || !subEl) return;
+    if (!cart.length) {
+      bodyEl.innerHTML = `<div class="ga-cart-empty"><p>${T.empty}</p><a href="${T.browseHref}">${T.browse}</a></div>`;
+      footEl.style.display = 'none';
+    } else {
+      footEl.style.display = '';
+      let sub = 0;
+      let anyUnpriced = false;
+      bodyEl.innerHTML = cart.map((it, idx) => {
+        const hasPrice = typeof it.price === 'number';
+        if (hasPrice) sub += (it.price as number) * it.qty;
+        else anyUnpriced = true;
+        const unit = hasPrice ? `${fmt(it.price as number)} ₪ ${T.each}` : T.request;
+        const line = hasPrice ? `${fmt((it.price as number) * it.qty)} ₪` : T.request;
+        return `<div class="ga-cart-item">
+          <span class="ga-cart-thumb"><img src="/${it.img}" alt="${it.name}"/></span>
+          <span class="ga-cart-info"><span class="ga-cart-nm">${it.name}</span><span class="ga-cart-kind">${it.kind}</span><span class="ga-cart-unit">${unit}</span>
+          <span class="ga-cart-qty"><button type="button" data-dec="${idx}" aria-label="Decrease quantity">−</button><span class="n">${it.qty}</span><button type="button" data-inc="${idx}" aria-label="Increase quantity">+</button></span></span>
+          <span class="ga-cart-right"><button class="ga-cart-rm" type="button" data-rm="${idx}" aria-label="Remove ${it.name}">✕</button><span class="ga-cart-line">${line}</span></span>
+        </div>`;
+      }).join('');
+      subEl.innerHTML = anyUnpriced && sub === 0
+        ? `${T.request}`
+        : `${fmt(sub)} <span class="cur">₪</span>`;
+    }
+    badges();
+  }
+
+  bodyEl?.addEventListener('click', (e) => {
+    const t = (e.target as HTMLElement).closest('button');
+    if (!t) return;
+    const inc = t.getAttribute('data-inc');
+    const dec = t.getAttribute('data-dec');
+    const rm = t.getAttribute('data-rm');
+    if (inc != null) cart[+inc].qty++;
+    else if (dec != null) cart[+dec].qty = Math.max(1, cart[+dec].qty - 1);
+    else if (rm != null) cart.splice(+rm, 1);
+    else return;
+    write();
+    render();
+  });
+
+  function open() {
+    render();
+    overlay?.classList.add('open');
+    overlay?.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('ga-cart-lock');
+  }
+  function close() {
+    overlay?.classList.remove('open');
+    overlay?.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('ga-cart-lock');
+  }
+  document.querySelectorAll<HTMLElement>('[data-cart-open]').forEach((b) =>
+    b.addEventListener('click', (e) => { e.preventDefault(); open(); })
+  );
+  overlay?.querySelectorAll<HTMLElement>('[data-cart-close]').forEach((b) => b.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay?.classList.contains('open')) close();
+  });
+
+  // Public API for product/kit pages (Step 3)
+  (window as any).GACart = {
+    add(item: CartItem) {
+      const existing = cart.find((i) => i.id === item.id);
+      if (existing) existing.qty += item.qty || 1;
+      else cart.push({ ...item, qty: item.qty || 1 });
+      write();
+      render();
+      open();
+    },
+    open,
+    count: () => cart.reduce((s, i) => s + i.qty, 0),
+  };
+
+  badges();
+</script>

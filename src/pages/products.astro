@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/blocks/ga-faq-style.css';
+import '../styles/blocks/ga-prod-style.css';
+import '../styles/blocks/ga-catalog-style.css';
+import '../styles/pages/products.css';
+import html from '../content/products.html?raw';
+import js from '../scripts/products.js?raw';
+const title = 'Products, Genetic Analyze';
+---
+
+<Layout title={title} active="products" mobileActive="products">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+  <script>import '../scripts/cart-bridge.ts';</script>
+</Layout>

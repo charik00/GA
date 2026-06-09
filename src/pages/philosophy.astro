@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/pages/philosophy.css';
+import html from '../content/philosophy.html?raw';
+import js from '../scripts/philosophy.js?raw';
+const title = 'Philosophy, Genetic Analyze';
+---
+
+<Layout title={title} active="philosophy">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+</Layout>

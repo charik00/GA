@@ -1,0 +1,187 @@
+/* ===== kits intro ===== */
+  .kits-intro { padding-top: clamp(156px, 19vh, 220px); padding-bottom: clamp(32px, 5vh, 56px); text-align: center; }
+  .kits-intro .ph-eyebrow { color: #C8862F; }
+  .kits-intro .ph-eyebrow::before, .kits-intro .ph-eyebrow::after { background: #C8862F; opacity: 0.55; }
+  .kits-intro .kits-sub {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: clamp(24px, 2.3vw, 34px); line-height: 1.3; color: var(--p-ink);
+    margin: 14px auto 0; max-width: none; white-space: nowrap;
+  }
+  @media (max-width: 520px) { .kits-intro .kits-sub { white-space: normal; max-width: 22ch; } }
+  .kits-intro .kits-lead {
+    font-family: var(--sans); font-weight: 400;
+    font-size: clamp(17px, 1.35vw, 20px); line-height: 1.72; color: var(--p-ink-2);
+    margin: 16px auto 0; max-width: 62ch;
+  }
+  .kits-intro .ph-accent-line { margin: 24px auto 0; }
+
+  /* ===== kits grid ===== */
+  .kits-section { padding-top: clamp(10px, 2vh, 26px); padding-bottom: clamp(72px, 11vh, 132px); }
+  .kit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2vw, 30px); }
+  @media (max-width: 1000px) { .kit-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .kit-grid { grid-template-columns: 1fr; } }
+
+  .kit-card {
+    display: flex; flex-direction: column;
+    background: var(--p-cream); border: 1px solid var(--p-line);
+    border-radius: 6px; overflow: hidden; cursor: pointer;
+    text-align: left; padding: 0; font: inherit; color: inherit;
+    box-shadow: 0 12px 30px -24px rgba(26,26,26,0.22);
+    transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
+  }
+  .kit-card:hover { transform: translateY(-4px); box-shadow: 0 22px 44px -22px rgba(26,26,26,0.30); border-color: rgba(26,26,26,0.16); }
+  .kit-card:focus-visible { outline: 2px solid #C8862F; outline-offset: 3px; }
+
+  .kit-photo {
+    position: relative; aspect-ratio: 4 / 3;
+    background: var(--p-cream-2);
+    background-image: repeating-linear-gradient(135deg, rgba(26,26,26,0.035) 0, rgba(26,26,26,0.035) 1px, transparent 1px, transparent 12px);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+  }
+  .kit-photo::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--kit-accent); z-index: 2; }
+  .kit-photo img { max-width: 86%; max-height: 88%; width: auto; height: auto; display: block; }
+  .kit-photo .cat-photo-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--p-muted); opacity: 0.7;
+  }
+
+  /* ===== bottle-cover variant (4 transparent bottles on linen botanical bg) ===== */
+  .kit-photo.has-bottles { background: var(--p-cream-2); background-image: none; container-type: size; }
+  .kit-photo.has-bottles .kit-cover-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center; display: block; z-index: 0; max-width: none; max-height: none;
+  }
+  .kit-photo.has-bottles .kit-bottles {
+    position: absolute; inset: 0; z-index: 1;
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 0 5cqw 7cqh; box-sizing: border-box;
+  }
+  .kit-photo.has-bottles .kit-bottle {
+    height: 60cqh; width: auto; max-width: none; max-height: none; object-fit: contain; display: block;
+    filter: drop-shadow(0 7px 11px rgba(26,26,26,0.22));
+  }
+  .kit-photo.has-bottles .kit-bottle + .kit-bottle { margin-left: -14cqw; }
+  /* gentle vertical stagger for depth */
+  .kit-photo.has-bottles .kit-bottle:nth-child(odd)  { transform: translateY(-3cqh); }
+  .kit-photo.has-bottles .kit-bottle:nth-child(even) { transform: translateY(3cqh); }
+
+  .kit-body { padding: clamp(18px, 1.7vw, 24px); display: flex; flex-direction: column; gap: 9px; }
+  .kit-card-bar { width: 38px; height: 3px; border-radius: 2px; background: var(--kit-accent); }
+  .kit-card-name { font-family: var(--display); font-size: clamp(26px, 2.2vw, 32px); font-weight: 500; line-height: 1.04; color: var(--p-ink); min-height: 2.08em; display: flex; align-items: flex-start; }
+  .kit-card-tag { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.3; color: var(--p-muted); }
+  .kit-card-formulas {
+    margin-top: 6px; padding-top: 13px; border-top: 1px solid var(--p-line);
+    font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase; color: var(--p-muted); line-height: 1.7;
+  }
+
+  /* ===== kit drawer — purchase column ===== */
+  .qv-panel .kit-tagline {
+    font-family: var(--display); font-style: italic; font-weight: 500;
+    font-size: clamp(22px, 1.9vw, 28px); line-height: 1.25; color: var(--p-ink); margin: 0 0 14px;
+  }
+  .qv-panel .kit-focus {
+    font-family: var(--sans); font-size: clamp(14px, 1.05vw, 16px); line-height: 1.6;
+    color: var(--p-ink-2); margin: 0 0 18px; max-width: 42ch;
+  }
+  .qv-panel .kit-focus b { font-weight: 600; color: var(--p-graphite); letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.8em; margin-right: 4px; }
+
+  /* ===== kit drawer — full-width detail ===== */
+  .kit-detail { display: flex; flex-direction: column; }
+  .kit-lead {
+    font-family: var(--display); font-style: italic; font-weight: 400;
+    font-size: clamp(19px, 1.7vw, 25px); line-height: 1.45; color: var(--p-ink);
+    margin: 0 0 clamp(6px, 1vh, 12px); max-width: 60ch;
+  }
+  .kit-sec { padding-top: clamp(26px, 3.4vh, 40px); margin-top: clamp(20px, 3vh, 34px); border-top: 1px solid var(--p-line); }
+  .kit-sec:first-child { border-top: 0; margin-top: 0; padding-top: clamp(8px, 1.5vh, 16px); }
+  .kit-sec-eyebrow {
+    font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.26em; text-transform: uppercase; color: var(--pp-accent);
+    margin: 0 0 22px; display: inline-flex; align-items: center; gap: 12px;
+  }
+  .kit-sec-eyebrow::before { content: ""; width: 24px; height: 1px; background: var(--pp-accent); opacity: 0.6; }
+
+  /* what's inside */
+  .kit-inside { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--p-line); }
+  .kit-inside li { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; padding: 18px 2px; border-bottom: 1px solid var(--p-line); }
+  .kit-inside .ki-dot { width: 11px; height: 11px; border-radius: 50%; margin-top: 7px; flex: none; }
+  .kit-inside .ki-name { font-family: var(--display); font-size: clamp(21px, 1.8vw, 25px); font-weight: 500; line-height: 1.1; color: var(--p-ink); }
+  .kit-inside .ki-role { font-family: var(--sans); font-size: clamp(14px, 1.05vw, 15.5px); line-height: 1.5; color: var(--p-ink-2); margin-top: 4px; max-width: 52ch; }
+
+  /* before / after */
+  .kit-ba { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 26px); }
+  @media (max-width: 620px) { .kit-ba { grid-template-columns: 1fr; } }
+  .kit-ba-col { border: 1px solid var(--p-line); border-radius: 6px; padding: clamp(20px, 2.4vw, 30px); }
+  .kit-ba-col.before { background: var(--p-cream-2); }
+  .kit-ba-col.after  { background: color-mix(in srgb, var(--pp-accent) 8%, var(--p-cream)); border-color: color-mix(in srgb, var(--pp-accent) 32%, var(--p-line)); }
+  .kit-ba-label { font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }
+  .kit-ba-col.before .kit-ba-label { color: var(--p-muted); }
+  .kit-ba-col.after  .kit-ba-label { color: var(--pp-accent); }
+  .kit-ba-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+  .kit-ba-list li { font-family: var(--display); font-size: clamp(20px, 1.9vw, 27px); font-weight: 500; line-height: 1.18; }
+  .kit-ba-col.before .kit-ba-list li { color: var(--p-muted); }
+  .kit-ba-col.after  .kit-ba-list li { color: var(--pp-accent); }
+
+  /* who it is for */
+  .kit-who p { font-family: var(--sans); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.7; color: var(--p-ink-2); margin: 0; max-width: 60ch; }
+
+  .kit-disclaimer {
+    margin: clamp(26px, 3.4vh, 40px) 0 0; padding-top: clamp(20px, 2.6vh, 28px); border-top: 1px solid var(--p-line);
+    font-family: 'Montserrat', system-ui, sans-serif; font-size: 12.5px; line-height: 1.7; color: var(--p-muted); max-width: 70ch;
+  }
+
+  /* secondary 'View formulas' button uses kit accent on hover */
+  .qv-panel .pp-btn.ghost:hover { background: var(--pp-accent); border-color: var(--pp-accent); color: #FAF7F2; }
+
+/* ===== two-column Kits hero: text left, wooden gift box right (review) ===== */
+/* comfortable top breathing room above the hero */
+.kits-intro { padding-top: clamp(140px, 17vh, 184px) !important; }
+.kits-intro .kits-hero {
+  display: grid;
+  grid-template-columns: 1.18fr 0.82fr;  /* text wider, photo a touch smaller */
+  gap: clamp(36px, 5vw, 80px);
+  align-items: center;           /* vertically center the text beside the photo */
+  text-align: left;
+  max-width: 1140px;             /* keep the hero compact, not full-bleed */
+  margin: 0 auto;
+}
+.kits-intro .kits-hero-text { min-width: 0; }
+/* left-align the items that were centered for the old layout */
+.kits-intro .kits-hero .kits-sub  { margin: 14px 0 0; white-space: normal; max-width: 24ch; }
+.kits-intro .kits-hero .kits-lead { margin: 18px 0 0; max-width: 46ch; }
+.kits-intro .kits-hero .ph-accent-line { margin: 26px 0 0; }
+
+.kits-intro .kits-hero-media {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.kits-intro .kits-hero-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 430px;             /* compact: do not let the photo balloon */
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px -28px rgba(26, 26, 26, 0.5);
+  display: block;
+  background: var(--p-cream-2);  /* placeholder tone until the photo loads */
+}
+.kits-intro .kits-hero-cap {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #3E3E3E;
+  margin: 0;
+}
+
+/* Mobile: stack text, then photo + caption (cards follow in the next section) */
+@media (max-width: 860px) {
+  .kits-intro .kits-hero { grid-template-columns: 1fr; gap: 26px; }
+  .kits-intro .kits-hero-photo { flex: none; aspect-ratio: 4 / 3; min-height: 0; }
+}

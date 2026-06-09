@@ -1,0 +1,82 @@
+---
+import { useTranslations, languages, type Locale } from '../i18n';
+interface Props {
+  active?: 'home' | 'products' | 'kits';
+  locale?: Locale;
+}
+const { active, locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<nav class="ga-tabbar" aria-label="Mobile navigation">
+  <a class="ga-tab" class:list={[active === 'home' && 'active']} data-tab="home" href="/"><span class="ga-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5 12 3l8.5 7.5"/><path d="M5.5 9.4V20h13V9.4"/></svg></span><span class="lbl">{t('nav.home')}</span></a>
+  <a class="ga-tab" class:list={[active === 'products' && 'active']} data-tab="products" href="/products"><span class="ga-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/></svg></span><span class="lbl">{t('nav.products')}</span></a>
+  <a class="ga-tab" class:list={[active === 'kits' && 'active']} data-tab="kits" href="/kits"><span class="ga-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5z"/><path d="M3.5 7.5 12 12l8.5-4.5"/><path d="M12 12v9"/></svg></span><span class="lbl">{t('nav.kits')}</span></a>
+  <button class="ga-tab" data-tab="cart" type="button" data-cart-open aria-label="Open cart"><span class="ga-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11l-1 11.2a1.8 1.8 0 0 1-1.8 1.6H9.3a1.8 1.8 0 0 1-1.8-1.6L6.5 8Z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg><span class="ga-tab-badge" data-cart-count hidden>0</span></span><span class="lbl">Cart</span></button>
+  <button class="ga-tab" data-tab="menu" type="button" data-menu-open aria-label="Open menu"><span class="ga-tab-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></span><span class="lbl">Menu</span></button>
+</nav>
+
+<div class="ga-sheet" id="ga-sheet" aria-hidden="true">
+  <div class="ga-sheet-veil" data-menu-close></div>
+  <div class="ga-sheet-panel" role="dialog" aria-modal="true" aria-label="Menu">
+    <div class="ga-sheet-handle" data-menu-close></div>
+    <button class="ga-sheet-x" type="button" data-menu-close aria-label="Close menu"></button>
+    <nav class="ga-sheet-links">
+      <a href="/philosophy">{t('nav.philosophy')}</a>
+      <a href="/about">{t('nav.about')}</a>
+      <a href="/articles">{t('nav.articles')}</a>
+      <a href="/faq">{t('footer.faq')}</a>
+      <a href="/contact">{t('nav.contact')}</a>
+    </nav>
+    <div class="ga-sheet-lang" role="group" aria-label="Language">
+      {languages.map((l, i) => (
+        <>
+          {i > 0 && <span class="sep">/</span>}
+          <button data-lang={l.code} class={l.code === locale ? 'on' : undefined} aria-disabled={l.enabled ? undefined : 'true'}>{l.label}</button>
+        </>
+      ))}
+    </div>
+    <div class="ga-sheet-legal">
+      <a href="/privacy">{t('footer.priv')}</a><span class="sep">·</span>
+      <a href="/terms">{t('footer.terms')}</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const sheet = document.getElementById('ga-sheet');
+  if (sheet) {
+    const open = () => {
+      sheet.classList.add('open');
+      sheet.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('ga-cart-lock');
+    };
+    const close = () => {
+      sheet.classList.remove('open');
+      sheet.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('ga-cart-lock');
+    };
+    document.querySelectorAll<HTMLElement>('[data-menu-open]').forEach((b) =>
+      b.addEventListener('click', (e) => { e.preventDefault(); open(); })
+    );
+    sheet.querySelectorAll<HTMLElement>('[data-menu-close]').forEach((b) => b.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && sheet.classList.contains('open')) close();
+    });
+    // swipe down to close
+    const panel = sheet.querySelector<HTMLElement>('.ga-sheet-panel')!;
+    let y0: number | null = null;
+    panel.addEventListener('touchstart', (e) => { y0 = e.touches[0].clientY; }, { passive: true });
+    panel.addEventListener('touchmove', (e) => {
+      if (y0 === null) return;
+      const dy = e.touches[0].clientY - y0;
+      if (dy > 0) panel.style.transform = `translateY(${dy}px)`;
+    }, { passive: true });
+    panel.addEventListener('touchend', (e) => {
+      const dy = e.changedTouches[0].clientY - (y0 || 0);
+      panel.style.transform = '';
+      if (dy > 70) close();
+      y0 = null;
+    });
+  }
+</script>

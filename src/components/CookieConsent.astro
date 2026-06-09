@@ -1,0 +1,80 @@
+---
+import { useTranslations, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<div class="ga-cookie" id="ga-cookie" role="dialog" aria-live="polite" aria-label="Cookie consent">
+  <div class="ga-cookie-inner">
+    <p class="ga-cookie-text">{t('cookie.text')} <a href="/privacy">{t('footer.priv')}</a></p>
+    <div class="ga-cookie-actions">
+      <button type="button" class="ga-ck-btn solid" data-ck="all">{t('cookie.accept')}</button>
+      <button type="button" class="ga-ck-btn outline" data-ck="necessary">{t('cookie.necessary')}</button>
+      <button type="button" class="ga-ck-btn link" data-ck="settings">{t('cookie.settings')}</button>
+    </div>
+    <div class="ga-cookie-settings">
+      <div class="ga-ck-set-inner">
+        <div class="ga-ck-grid">
+          <div class="ga-ck-opt"><button class="ga-tg" role="switch" aria-checked="true" disabled aria-label="Necessary cookies, always on"></button><span class="tx"><span class="nm">Necessary</span><span class="ds">Required for the site to function. Always on.</span></span></div>
+          <div class="ga-ck-opt"><button class="ga-tg" role="switch" aria-checked="false" data-cat="analytics" aria-label="Analytics cookies"></button><span class="tx"><span class="nm">Analytics</span><span class="ds">Help us understand how the site is used.</span></span></div>
+          <div class="ga-ck-opt"><button class="ga-tg" role="switch" aria-checked="false" data-cat="preferences" aria-label="Preference cookies"></button><span class="tx"><span class="nm">Preferences</span><span class="ds">Remember your language and choices.</span></span></div>
+        </div>
+        <button type="button" class="ga-ck-btn solid ga-ck-save" data-ck="save">{t('cookie.save')}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'ga-cookie-consent';
+  const bar = document.getElementById('ga-cookie');
+  if (bar) {
+    const stored = () => {
+      try { return JSON.parse(localStorage.getItem(KEY) || 'null'); } catch { return null; }
+    };
+    const show = (openSettings: boolean) => {
+      bar.classList.add('show');
+      if (openSettings) bar.classList.add('settings-open');
+    };
+    const hide = () => bar.classList.remove('show', 'settings-open');
+    const save = (consent: Record<string, boolean>) => {
+      try { localStorage.setItem(KEY, JSON.stringify(consent)); } catch {}
+      hide();
+    };
+    if (!stored()) setTimeout(() => show(false), 650);
+
+    bar.querySelectorAll<HTMLElement>('[data-ck]').forEach((b) => {
+      b.addEventListener('click', () => {
+        const a = b.getAttribute('data-ck');
+        if (a === 'all') save({ necessary: true, analytics: true, preferences: true });
+        else if (a === 'necessary') save({ necessary: true, analytics: false, preferences: false });
+        else if (a === 'settings') bar.classList.toggle('settings-open');
+        else if (a === 'save') {
+          const c: Record<string, boolean> = { necessary: true };
+          bar.querySelectorAll<HTMLElement>('.ga-tg[data-cat]').forEach((tg) => {
+            c[tg.getAttribute('data-cat')!] = tg.getAttribute('aria-checked') === 'true';
+          });
+          save(c);
+        }
+      });
+    });
+    bar.querySelectorAll<HTMLElement>('.ga-tg[data-cat]').forEach((tg) => {
+      tg.addEventListener('click', () =>
+        tg.setAttribute('aria-checked', tg.getAttribute('aria-checked') === 'true' ? 'false' : 'true')
+      );
+    });
+    // "Cookie Settings" links (in the footer) reopen the banner with settings expanded
+    document.querySelectorAll<HTMLElement>('[data-cookie-settings]').forEach((el) => {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        const s = stored();
+        bar.querySelectorAll<HTMLElement>('.ga-tg[data-cat]').forEach((tg) => {
+          const cat = tg.getAttribute('data-cat')!;
+          tg.setAttribute('aria-checked', s && s[cat] ? 'true' : 'false');
+        });
+        show(true);
+      });
+    });
+  }
+</script>

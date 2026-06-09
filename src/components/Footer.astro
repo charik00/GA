@@ -1,0 +1,68 @@
+---
+import { useTranslations, languages, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+
+// TODO(client): confirm phone number and street address.
+// Email ok@drkaholi.com is confirmed; phone/address below are placeholders.
+const phone = '+972-52-888-3322';
+const phoneHref = 'tel:+972528883322';
+const email = 'ok@drkaholi.com';
+const address = '6 HaRimonim St., Rosh Pina, Israel';
+---
+
+<footer class="footer" data-screen-label="11 Footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <img class="glyph" src="/ga-logo-header.png" alt="GA" />
+          <span class="word">{t('footer.est')}<b>Genetic Analyze</b></span>
+        </a>
+        <p class="footer-disclaimer">{t('footer.disclaimer')}</p>
+      </div>
+      <div>
+        <h4>{t('footer.shop')}</h4>
+        <ul>
+          <li><a href="/products">{t('footer.shop.1')}</a></li>
+          <li><a href="/kits">{t('footer.shop.2')}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{t('footer.about')}</h4>
+        <ul>
+          <li><a href="/philosophy">{t('footer.about.1')}</a></li>
+          <li><a href="/about">{t('nav.about')}</a></li>
+          <li><a href="/articles">{t('footer.about.3')}</a></li>
+          <li><a href="/faq">{t('footer.faq')}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>{t('footer.contact')}</h4>
+        <ul>
+          <li><a href={`mailto:${email}`}>{email}</a></li>
+          <li><a href={phoneHref}>{phone}</a></li>
+          <li>{address}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>{t('footer.copyright')}</div>
+      <div style="display:flex; gap:24px; align-items:center">
+        <a href="/privacy">{t('footer.priv')}</a>
+        <a href="/terms">{t('footer.terms')}</a>
+        <a href="#" data-cookie-settings>{t('footer.cookie')}</a>
+        <span style="color:var(--line)">·</span>
+        <span class="lang">
+          {languages.map((l, i) => (
+            <>
+              {i > 0 && <span class="sep">/</span>}
+              <button data-lang={l.code} class={l.code === locale ? 'on' : undefined} aria-disabled={l.enabled ? undefined : 'true'}>{l.label}</button>
+            </>
+          ))}
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

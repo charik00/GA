@@ -1,0 +1,21 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import '../../styles/blocks/ga-faq-style.css';
+import '../../styles/blocks/ga-doc-style.css';
+import '../../styles/pages/article.css';
+import html from '../../content/article.html?raw';
+import js from '../../scripts/article.js?raw';
+import { articles } from '../../data/catalog';
+
+export function getStaticPaths() {
+  // Both articles render the one designed article body for now.
+  // TODO(client/design): supply the Part 2 body; then split content per slug.
+  return articles.map((a) => ({ params: { slug: a.slug }, props: { title: a.title } }));
+}
+const { title } = Astro.props;
+---
+
+<Layout title={`${title}, Genetic Analyze`} active="articles">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+</Layout>

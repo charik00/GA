@@ -1,0 +1,138 @@
+---
+import { products } from '../data/catalog';
+import { useTranslations, languages, type Locale } from '../i18n';
+
+interface Props {
+  /** which top-level nav item is active on this page */
+  active?: 'home' | 'philosophy' | 'about' | 'products' | 'kits' | 'articles' | 'contact';
+  locale?: Locale;
+}
+const { active, locale = 'en' } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<header class="header" id="header" data-screen-label="00 Header">
+  <a href="/" class="logo" aria-label="Genetic Analyze, home">
+    <img class="glyph" src="/ga-logo-header.png" alt="GA" />
+    <span class="word"><b>Genetic Analyze</b></span>
+  </a>
+
+  <nav class="nav" aria-label="Primary">
+    <a href="/" class={active === 'home' ? 'active' : undefined}>{t('nav.home')}</a>
+    <a href="/philosophy" class={active === 'philosophy' ? 'active' : undefined}>{t('nav.philosophy')}</a>
+    <a href="/about" class={active === 'about' ? 'active' : undefined}>{t('nav.about')}</a>
+    <div class="ga-mm" data-mm>
+      <a href="/products" class="ga-mm-trigger" aria-haspopup="true" aria-expanded="false">
+        {t('nav.products')}<span class="ga-mm-caret" aria-hidden="true"></span>
+      </a>
+      <div class="ga-mm-panel" role="menu">
+        <a class="ga-mm-kits" href="/kits">KITS<span class="ga-mm-arrow" aria-hidden="true">→</span></a>
+        <div class="ga-mm-div"></div>
+        <div class="ga-mm-grid">
+          {products.map((p) => (
+            <a class="ga-mm-cell" href={`/products?item=${encodeURIComponent(p.name)}`}>
+              <span class="ga-mm-name">{p.name}</span>
+              <span class="ga-mm-bar" style={`background:${p.color}`} aria-hidden="true"></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+    <a href="/articles" class={active === 'articles' ? 'active' : undefined}>{t('nav.articles')}</a>
+    <a href="/contact" class={active === 'contact' ? 'active' : undefined}>{t('nav.contact')}</a>
+  </nav>
+
+  <div class="header-right">
+    <button class="ga-cart-ic" type="button" data-cart-open aria-label="Open cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6.5 8h11l-1 11.2a1.8 1.8 0 0 1-1.8 1.6H9.3a1.8 1.8 0 0 1-1.8-1.6L6.5 8Z"/><path d="M9 8V6.2a3 3 0 0 1 6 0V8"/></svg>
+      <span class="ga-cart-count" data-cart-count hidden>0</span>
+    </button>
+    <a href="/products" class="btn sm solid">{t('nav.shop')}<span class="arrow"></span></a>
+    <div class="lang" role="group" aria-label="Language">
+      {languages.map((l, i) => (
+        <>
+          {i > 0 && <span class="sep">/</span>}
+          {l.enabled ? (
+            <button data-lang={l.code} class={l.code === locale ? 'on' : undefined}>{l.label}</button>
+          ) : (
+            <button data-lang={l.code} aria-disabled="true" title="Coming soon">{l.label}</button>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script>
+  // Header shrink-on-scroll
+  const h = document.getElementById('header');
+  if (h) {
+    const onScroll = () => h.classList.toggle('scrolled', window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // Products mega-menu
+  const mms = Array.from(document.querySelectorAll<HTMLElement>('.ga-mm'));
+  const header = document.getElementById('header');
+  function place(mm: HTMLElement) {
+    const panel = mm.querySelector<HTMLElement>('.ga-mm-panel')!;
+    const trigger = mm.querySelector<HTMLElement>('.ga-mm-trigger')!;
+    const b = header ? Math.round(header.getBoundingClientRect().bottom) : 88;
+    panel.style.top = (window.innerWidth > 620 ? b + 8 : b) + 'px';
+    if (window.innerWidth > 620) {
+      const tr = trigger.getBoundingClientRect();
+      let left = Math.round(tr.left);
+      const pw = 360;
+      if (left + pw > window.innerWidth - 12) left = window.innerWidth - 12 - pw;
+      if (left < 12) left = 12;
+      panel.style.left = left + 'px';
+    } else {
+      panel.style.left = '';
+    }
+  }
+  function closeMm(mm: HTMLElement) {
+    mm.classList.remove('open');
+    mm.querySelector('.ga-mm-trigger')!.setAttribute('aria-expanded', 'false');
+  }
+  function closeAll(except: HTMLElement | null) {
+    mms.forEach((m) => { if (m !== except) closeMm(m); });
+  }
+  function openMm(mm: HTMLElement) {
+    closeAll(mm);
+    place(mm);
+    mm.classList.add('open');
+    mm.querySelector('.ga-mm-trigger')!.setAttribute('aria-expanded', 'true');
+  }
+  const hoverable = window.matchMedia('(hover: hover) and (min-width: 901px)').matches;
+  let closeTimer: number | undefined;
+  const cancelClose = () => { if (closeTimer) { clearTimeout(closeTimer); closeTimer = undefined; } };
+  const scheduleClose = (mm: HTMLElement) => { cancelClose(); closeTimer = window.setTimeout(() => closeMm(mm), 220); };
+  mms.forEach((mm) => {
+    const trigger = mm.querySelector<HTMLElement>('.ga-mm-trigger')!;
+    const panel = mm.querySelector<HTMLElement>('.ga-mm-panel')!;
+    if (hoverable) {
+      // Desktop: hovering opens the dropdown, clicking the word navigates to /products.
+      // The panel sits a few px below the trigger; a short close delay (cancelled on
+      // entering trigger or panel) lets the cursor cross that gap to reach KITS.
+      mm.addEventListener('mouseenter', () => { cancelClose(); openMm(mm); });
+      mm.addEventListener('mouseleave', () => scheduleClose(mm));
+      panel.addEventListener('mouseenter', cancelClose);
+      panel.addEventListener('mouseleave', () => scheduleClose(mm));
+    } else {
+      // Touch / narrow: first tap opens the dropdown, second tap follows the link
+      trigger.addEventListener('click', (e) => {
+        if (!mm.classList.contains('open')) {
+          e.preventDefault();
+          e.stopPropagation();
+          openMm(mm);
+        }
+      });
+    }
+    mm.querySelector('.ga-mm-panel')!.addEventListener('click', (e) => e.stopPropagation());
+  });
+  document.addEventListener('click', () => closeAll(null));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(null); });
+  window.addEventListener('scroll', () => mms.forEach((mm) => mm.classList.contains('open') && place(mm)), { passive: true });
+  window.addEventListener('resize', () => mms.forEach((mm) => mm.classList.contains('open') && place(mm)));
+</script>

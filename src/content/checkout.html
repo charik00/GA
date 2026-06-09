@@ -1,0 +1,44 @@
+<!-- ============== CHECKOUT (cream) ============== -->
+<section class="phil-section cream co-page" data-screen-label="01 Checkout">
+  <div class="wrap">
+    <header class="co-head">
+      <p class="legal-kicker">Order</p>
+      <h1 class="legal-title">Checkout</h1>
+    </header>
+    <div class="co-grid">
+      <form class="co-form" id="co-form" novalidate>
+        <div class="co-field"><label for="co-name">Full name</label><input id="co-name" type="text" autocomplete="name" required /></div>
+        <div class="co-row2">
+          <div class="co-field"><label for="co-phone">Phone</label><input id="co-phone" type="tel" autocomplete="tel" required /></div>
+          <div class="co-field"><label for="co-email">Email</label><input id="co-email" type="email" autocomplete="email" required /></div>
+        </div>
+        <div class="co-row2">
+          <div class="co-field"><label for="co-city">City</label><input id="co-city" type="text" autocomplete="address-level2" required /></div>
+          <div class="co-field"><label for="co-addr">Address</label><input id="co-addr" type="text" autocomplete="street-address" required /></div>
+        </div>
+        <div class="co-field"><label for="co-notes">Notes (optional)</label><textarea id="co-notes"></textarea></div>
+        <div class="co-checks">
+          <label class="co-check"><input id="co-consent" type="checkbox" required /> <span>I agree to the processing of my data (<a href="/privacy">Privacy Policy</a>).</span></label>
+          <label class="co-check"><input id="co-updates" type="checkbox" /> <span>Send me updates.</span></label>
+        </div>
+        <p class="co-err" id="co-err">Please complete the required fields and agree to the processing of your data.</p>
+        <div class="co-next" aria-label="What happens next">
+          <p class="co-next-h">What happens next</p>
+          <div class="co-next-steps">
+            <div class="co-step"><span class="co-step-n">01</span><span class="co-step-t">Place your order</span></div>
+            <div class="co-step"><span class="co-step-n">02</span><span class="co-step-t">Our manager contacts you to confirm details</span></div>
+            <div class="co-step"><span class="co-step-n">03</span><span class="co-step-t">Payment and delivery arranged together</span></div>
+          </div>
+        </div>
+        <button type="submit" class="co-place">Place order<span class="arrow">&rarr;</span></button>
+      </form>
+      <aside class="co-summary">
+        <h2>Order summary</h2>
+        <ul class="co-sum-list" id="co-sum-list"></ul>
+        <div class="co-sum-total"><span class="k">Subtotal</span><span class="v" id="co-subtotal">0&nbsp;<span class="cur">&#8362;</span></span></div>
+        <p class="co-note">No online payment now. Once you place the order, our manager will contact you to confirm details, payment, and delivery.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+<!-- checkout summary + submit handled by src/scripts/checkout-logic.ts -->

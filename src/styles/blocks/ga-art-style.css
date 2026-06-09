@@ -1,0 +1,96 @@
+/* ============== Articles list ============== */
+  .art-list-section { padding-top: clamp(4px, 1.5vh, 18px); padding-bottom: clamp(52px, 8vh, 96px); }
+  .mag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: clamp(28px, 2.8vw, 44px);
+  }
+  @media (max-width: 920px) { .mag-grid { grid-template-columns: 1fr; } }
+
+  .mag-card {
+    display: flex; flex-direction: column;
+    background: var(--p-cream);
+    border: 1px solid var(--p-line);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 14px 34px -22px rgba(26,26,26,0.22);
+    transition: box-shadow 0.45s ease, transform 0.45s ease;
+  }
+  .mag-card:hover { box-shadow: 0 22px 46px -20px rgba(26,26,26,0.30); transform: translateY(-3px); }
+  .mag-cover-link { display: block; text-decoration: none; color: inherit; }
+  .mag-cover {
+    position: relative;
+    aspect-ratio: 3 / 2;
+    background: var(--p-graphite);
+    overflow: hidden;
+  }
+  .mag-cover img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .mag-cover-link:hover .mag-cover img { transform: scale(1.04); }
+  .mag-cover::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: rgba(26,26,26,0);
+    transition: background 0.4s ease;
+  }
+  .mag-cover-link:hover .mag-cover::after { background: rgba(26,26,26,0.10); }
+
+  .mag-body { padding: clamp(18px, 1.6vw, 24px) clamp(20px, 1.8vw, 28px) clamp(22px, 2vw, 28px); display: flex; flex-direction: column; align-items: flex-start; gap: 9px; }
+  .mag-meta {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: #C8862F;
+    flex-wrap: wrap;
+  }
+  .mag-meta span { white-space: nowrap; }
+  .mag-meta .dot { color: var(--p-line); font-weight: 400; }
+  .mag-title {
+    font-family: var(--display);
+    font-size: clamp(28px, 2.6vw, 33px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.008em;
+    color: var(--p-ink);
+    margin: 2px 0 0;
+    text-wrap: balance;
+  }
+  .mag-title a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
+  .mag-title a:hover { color: #C8862F; }
+  .mag-sub {
+    font-family: var(--sans);
+    font-size: clamp(15px, 1.1vw, 17px);
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--p-ink-2);
+    margin: 0;
+    max-width: 46ch;
+  }
+  .mag-read {
+    margin-top: 10px;
+    height: 46px; padding: 0 28px;
+    font-family: 'Montserrat', system-ui, sans-serif !important;
+    font-size: 11.5px !important; font-weight: 500 !important;
+    letter-spacing: 0.2em !important; text-transform: uppercase;
+    border: 1px solid var(--p-graphite); border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+    color: var(--p-graphite); background: transparent; text-decoration: none;
+    transition: background 0.4s ease, color 0.4s ease;
+  }
+  .mag-read:hover { background: var(--p-graphite); color: #FAF7F2; }
+
+  /* reveal hooks */
+  html.reveal .phil-section:not(.ph-intro) .mag-card {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  html.reveal .phil-section.in-view .mag-card { opacity: 1; transform: none; }
+  html.reveal .phil-section.in-view .mag-card:nth-child(2) { transition-delay: 0.1s; }
+  html.reveal .phil-section.in-view .mag-card:nth-child(3) { transition-delay: 0.18s; }
+  html.reveal .phil-section.in-view .mag-card:nth-child(4) { transition-delay: 0.26s; }

@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/pages/contact.css';
+import html from '../content/contact.html?raw';
+import js from '../scripts/contact.js?raw';
+const title = 'Contact, Genetic Analyze';
+---
+
+<Layout title={title} active="contact">
+  <Fragment set:html={html} />
+  <script is:inline set:html={js} />
+  <script>import '../scripts/contact-logic.ts';</script>
+</Layout>

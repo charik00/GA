@@ -1,0 +1,115 @@
+/* ============================================================================
+ * Kit quick-view drawer, transcribed 1:1 from the reference (Kits EN V1 offline).
+ * Loaded last on the Kits page so it is the authoritative source for the panel.
+ * Frame = .qv-media (cream, border, rounded, top accent strip); the cloned
+ * composition fills it via .qv-cover (absolute). Photo is contained, not cropped.
+ * ========================================================================== */
+
+/* ---- media frame (cover holder) ---- */
+.qv-media {
+  background: var(--p-cream-2);
+  border: 1px solid var(--p-line);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  padding: clamp(10px, 1.2vw, 14px);
+  aspect-ratio: 4 / 3;
+}
+/* thin accent strip flush along the top edge, in the kit's own color */
+.qv-media::before {
+  content: "";
+  position: absolute;
+  top: -1px; left: -1px; right: -1px;
+  height: 4px;
+  background: var(--pp-accent);
+  z-index: 2;
+}
+.qv-media img { height: 94%; width: auto; max-width: 100%; object-fit: contain; display: block; }
+.qv-media .cat-photo-tag { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--p-muted); }
+
+/* cloned kit composition fills the frame */
+.qv-cover { position: absolute; inset: 0; z-index: 1; }
+.qv-cover .kit-photo { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; }
+.qv-cover .kit-photo::before { display: none; }
+
+/* ---- left column: cover + before/after stacked ---- */
+.qv-left { display: flex; flex-direction: column; gap: clamp(18px, 2.6vh, 30px); min-width: 0; }
+.qv-left .qv-media { width: 100%; }
+
+/* ---- before / after block under the cover ---- */
+.qv-ba {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  column-gap: clamp(16px, 1.6vw, 24px);
+  align-items: start;
+}
+.qv-ba-divider { width: 1px; align-self: stretch; background: var(--pp-accent); opacity: 0.5; }
+.qv-ba-col { min-width: 0; }
+.qv-ba-label {
+  font-family: 'Montserrat', system-ui, sans-serif; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase; margin: 0 0 14px;
+}
+.qv-ba-col.is-before .qv-ba-label { color: var(--p-muted); }
+.qv-ba-col.is-after  .qv-ba-label { color: var(--pp-accent); }
+.qv-ba-list { list-style: none; margin: 0; padding: 0; }
+.qv-ba-list li {
+  font-family: var(--sans); font-size: clamp(15px, 1.15vw, 17px); line-height: 1.5;
+  padding: 4px 0;
+}
+.qv-ba-col.is-before .qv-ba-list li { color: var(--p-muted); }
+.qv-ba-col.is-after  .qv-ba-list li { color: var(--pp-accent); font-weight: 500; }
+
+/* ---- two-column top: photo+ba left, purchase block right ---- */
+.qv-top {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(24px, 3vw, 48px);
+  align-items: start;
+  margin-bottom: clamp(28px, 4vh, 48px);
+}
+.qv-top .pp-info { justify-content: center; }
+@media (max-width: 880px) {
+  .qv-top { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); }
+  .qv-left { max-width: 460px; }
+}
+
+/* ---- purchase block, scoped to the drawer (does not touch product pages) ---- */
+.qv-panel .pp-kicker { margin-bottom: 12px; }
+.qv-panel .pp-name { margin: 0 0 12px; font-size: clamp(28px, 2.6vw, 38px); line-height: 1.08; }
+.qv-panel .pp-desc { margin: 0 0 16px; }
+.qv-panel .pp-tags { margin: 0 0 18px; }
+.qv-panel .pp-price-row { margin-bottom: 16px; }
+.qv-panel .pp-actions { margin-bottom: 14px; }
+/* slogan dash removed in the drawer, accent carried by the top strip + tab underline */
+.qv-panel .pp-bar { display: none; }
+.qv-panel .pp-price .cur { font-size: 0.55em; vertical-align: baseline; color: inherit; }
+.qv-panel .pp-price { font-size: clamp(24px, 2.1vw, 33px); font-weight: 400; }
+.qv-panel .pp-price-sub { font-size: 13.5px; }
+
+/* drawer accents follow the kit's own color, not brand amber */
+.qv-panel .pp-tab { transition: none; }
+.qv-panel .pp-tab.active { color: var(--pp-accent); border-bottom-color: var(--pp-accent); }
+.qv-panel .pp-acc-head:hover { color: var(--pp-accent); }
+.qv-panel .pp-acc-icon::before,
+.qv-panel .pp-acc-icon::after { background: var(--pp-accent); }
+
+/* tabs sit on one row inside the drawer, a touch larger */
+.qv-panel .pp-tablist { gap: clamp(8px, 0.9vw, 13px); flex-wrap: nowrap; }
+.qv-panel .pp-tab { font-size: 12.5px; letter-spacing: 0.03em; white-space: nowrap; }
+.qv-panel .pp-ptext p { font-size: clamp(17px, 1.25vw, 18.5px); }
+.qv-panel .pp-ptext p.qv-important { font-size: 14px; }
+
+.qv-tabs-wrap { margin-top: 0; padding-top: clamp(24px, 3vh, 36px); border-top: 1px solid var(--p-line); }
+
+/* ---- kit purchase column text ---- */
+.qv-panel .kit-tagline {
+  font-family: var(--display); font-style: italic; font-weight: 500;
+  font-size: clamp(21px, 1.7vw, 27px); line-height: 1.25; color: var(--p-ink); margin: 0 0 14px;
+}
+.qv-panel .kit-focus {
+  font-family: var(--sans); font-size: clamp(16px, 1.2vw, 18px); line-height: 1.6;
+  color: var(--p-ink-2); margin: 0 0 18px; max-width: 42ch;
+}
+.qv-panel .kit-focus b { font-weight: 600; color: var(--p-graphite); letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.8em; margin-right: 4px; }
+.qv-panel .pp-btn.ghost:hover { background: var(--pp-accent); border-color: var(--pp-accent); color: #FAF7F2; }
