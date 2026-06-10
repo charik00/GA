@@ -1110,7 +1110,7 @@
 
       .hero .hero-content {
         max-width: none;
-        padding: 122px 20px 0 !important;   /* clear the fixed header on phones */
+        padding: 122px 24px 0 !important;   /* clear the fixed header on phones */
         margin: 0 auto;
         transform: none;
       }
@@ -1206,4 +1206,19 @@
 @media (max-width: 860px) {
   #articles .art-layout { grid-template-columns: 1fr; gap: 22px; }
   #articles .art-cards { gap: 16px; }
+}
+
+/* Mobile only: landing catalog cards must shrink to fit (was overflowing the
+   viewport because grid items default to min-width:auto, pushing the 2nd column
+   past the screen and creating horizontal scroll). Desktop grid unchanged. */
+@media (max-width: 640px) {
+  #products .cat-grid { grid-template-columns: 1fr 1fr; }
+  #products .cat-card { min-width: 0; }
+}
+
+/* Mobile only: article cards must wrap their title and shrink to fit
+   (base.css sets .art-card h3 white-space:nowrap, which overflowed on phones). */
+@media (max-width: 640px) {
+  #articles .art-cards, #articles .art-card { min-width: 0; }
+  #articles .art-card h3 { white-space: normal; }
 }

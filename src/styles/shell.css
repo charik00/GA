@@ -296,3 +296,11 @@ html .header .nav { opacity: 1 !important; }
   html .header .logo .word b { font-size: 16px !important; }
   html .header .lang { font-size: 10px !important; }
 }
+
+/* Mobile only: the footer-bottom links + language row was a rigid no-wrap flex
+   row (Privacy, Terms, Cookie, EN/RU/HE at gap:24px) that overflowed narrow
+   screens and created horizontal scroll. Let it wrap and tighten the gap. */
+@media (max-width: 600px) {
+  .footer-bottom { gap: 16px; }
+  .footer-bottom > div { flex-wrap: wrap; gap: 10px 16px !important; }
+}
