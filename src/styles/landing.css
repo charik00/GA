@@ -55,7 +55,7 @@
     .hero h1,
     .hero h1 span { color: var(--v7-ink); }
     .hero h1 .em.italic { color: var(--v7-honey); } /* italic accent stays gold */
-    .hero .hero-sub { color: var(--v7-muted); }
+    .hero .hero-sub { color: var(--v7-muted); font-size: clamp(21px, 1.65vw, 25px); font-weight: 400; line-height: 1.55; }
     .hero .hero-eyebrow { color: var(--v7-ink); }
     .hero .hero-eyebrow::before { background: var(--v7-ink); }
 
@@ -798,17 +798,18 @@
 
     /* Trust strip directly under the hero CTAs — content-based wrap */
     .hero .hero-trust {
-      margin-top: 32px;
+      margin-top: 20px;
       font-family: 'Nexa Light', 'Inter', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
-      font-size: 10.5px;
-      letter-spacing: 0.12em;
+      font-size: clamp(12px, 1.05vw, 15px);
+      font-weight: 500;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: #8A857A;
       display: flex;
-      flex-wrap: wrap !important;
-      gap: 10px 14px;
+      flex-wrap: nowrap !important;
+      gap: 8px 12px;
       align-items: center;
-      white-space: normal !important;
+      white-space: nowrap !important;
       max-width: 100%;
       line-height: 1.4;
     }
@@ -1066,7 +1067,7 @@
       position: relative !important;
       z-index: 2 !important;
       width: 100%;
-      max-width: 900px;
+      max-width: 1060px;
       margin: 0 auto;
       background: transparent !important;
       text-align: center;
@@ -1079,8 +1080,8 @@
 
     /* Eyebrow + sub + actions + trust — all centered within the column */
     .hero .hero-eyebrow   { justify-content: center; align-self: center; }
-    .hero .hero-sub       { margin: 36px auto 0; max-width: 640px; }
-    .hero .hero-actions   { justify-content: center !important; align-self: center; margin-top: 44px !important; }
+    .hero .hero-sub       { margin: 24px auto 0; max-width: 640px; }
+    .hero .hero-actions   { justify-content: center !important; align-self: center; margin-top: 28px !important; }
     .hero .hero-trust     { justify-content: center !important; align-self: center; }
 
     /* Headline — editorial, two clean centered lines */
@@ -1096,7 +1097,7 @@
     .hero .h-display,
     .hero .hero-eyebrow   { color: #1A1A1A !important; }
     .hero .hero-sub,
-    .hero .hero-trust     { color: #2D2D2D !important; }
+    .hero .hero-trust     { color: #141414 !important; }
     .hero .h-display,
     .hero .hero-sub,
     .hero .hero-trust     { text-shadow: none !important; }
