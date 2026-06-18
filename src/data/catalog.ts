@@ -62,12 +62,12 @@ export const products: Product[] = [
 ];
 
 export const kits: Kit[] = [
-  { slug: 'vital-man',     name: 'VITAL MAN PRO KIT',        slogan: 'Male strength. It starts from within.',          includes: ['XL MAN PRO', 'NEPHROXIL', 'HEMOVITALIS', 'BIOACTIVE ELIXIR'], color: '#1381BC', bg: 'images/kits/bg_sage.png',           price: null },
-  { slug: 'digestive-reset', name: 'DIGESTIVE RESET KIT',    slogan: 'A healthy gut is the foundation of everything.', includes: ['GASTIRIX', 'STOMAVIL', 'PRO BIO TECH', 'HEPADETOX'],          color: '#7DC242', bg: 'images/kits/bg_rosemary.png',       price: null },
-  { slug: 'female-blood',  name: 'FEMALE BLOOD BALANCE KIT', slogan: 'Female vitality. Blood, hormones, cycle.',       includes: ['HEMOVITALIS', 'NEPHROXIL', 'SUCREOL', 'BIOACTIVE ELIXIR'],     color: '#F5A6A2', bg: 'images/kits/bg_hibiscus.png',       price: null },
-  { slug: 'calm-heart',    name: 'CALM & HEART KIT',         slogan: 'A quiet heart is a strong heart.',               includes: ['CARDILEX', 'HEMOVITALIS', 'VAÏOTEC', 'BIOACTIVE ELIXIR'],      color: '#F13F3D', bg: 'images/kits/bg_lavender.png',       price: null },
-  { slug: 'men-hair',      name: 'MEN HAIR VITALITY KIT',    slogan: 'Real growth starts beneath the surface.',        includes: ['NEPHROXIL', 'HEMOVITALIS', 'XL MAN PRO', 'BIOACTIVE ELIXIR'], color: '#5AB6CF', bg: 'images/kits/bg_rosemary_citrus.png', price: null },
-  { slug: 'aesthetic',     name: 'AESTHETIC RECOVERY KIT',   slogan: 'Beauty is a biological process.',                includes: ['HEPADETOX', 'DRAINALENE', 'VAÏOTEC', 'BIOACTIVE ELIXIR'],      color: '#C9A96E', bg: 'images/kits/bg_chamomile.png',      price: null },
+  { slug: 'vital-man',     name: 'ALPHA VITALITY KIT',           slogan: 'Male strength. It starts from within.',          includes: ['Nephroxil', 'XL Man Pro', 'Hemovitalis', 'Bioactive Elixir'], color: '#1381BC', bg: 'images/kits/bg_sage.png',           price: 990 },
+  { slug: 'digestive-reset', name: 'GUT RESTORATION SYSTEM',      slogan: 'A healthy gut is the foundation of everything.', includes: ['Gastirix', 'Hepadetox', 'Pro Bio Tech', 'Bioactive Elixir'],   color: '#7DC242', bg: 'images/kits/bg_rosemary.png',       price: 890 },
+  { slug: 'female-blood',  name: 'FEMALE VITAL ESSENCE KIT',     slogan: 'Female vitality. Renewed from within.',          includes: ['Hemovitalis', 'Gastirix', 'Hepadetox', 'Bioactive Elixir'],    color: '#F5A6A2', bg: 'images/kits/bg_hibiscus.png',       price: 890 },
+  { slug: 'calm-heart',    name: 'INNER HARMONY KIT',            slogan: 'A quiet heart is a strong heart.',               includes: ['Cardilex', 'Hemovitalis', 'Drainalene', 'Bioactive Elixir'],   color: '#F13F3D', bg: 'images/kits/bg_lavender.png',       price: 890 },
+  { slug: 'men-hair',      name: 'HAIR REGENERATION SYSTEM',     slogan: 'Real growth starts beneath the surface.',        includes: ['Hemovitalis', 'XL Man Pro', 'Nephroxil', 'Bioactive Elixir'],  color: '#5AB6CF', bg: 'images/kits/bg_rosemary_citrus.png', price: 890 },
+  { slug: 'aesthetic',     name: 'AESTHETIC REGENERATION SYSTEM', slogan: 'Beauty is a biological process.',               includes: ['Hepadetox', 'Hemovitalis', 'Pro Bio Tech', 'Bioactive Elixir'], color: '#C9A96E', bg: 'images/kits/bg_chamomile.png',      price: 890 },
 ];
 
 export const articles: Article[] = [

@@ -98,6 +98,7 @@
     var elTagline = document.getElementById('qv-tagline');
     var elFocus = document.getElementById('qv-focus');
     var elPriceSub = document.getElementById('qv-price-sub');
+    var elPrice = document.getElementById('qv-price');
     var elPhoto = document.getElementById('qv-photo');
     var elPhotoTag = document.getElementById('qv-photo-tag');
     var elTabDesc = document.getElementById('qv-tab-description');
@@ -111,16 +112,16 @@
     var DISCLAIMER = 'This is a dietary supplement, not a medicine, and does not replace treatment prescribed by a doctor. Consult a specialist before use, especially if pregnant, breastfeeding, taking medication, or managing a medical condition.';
 
     var FC = {
-      'Nephroxil':'#5B7CA8', 'XL Man Pro':'#5B7CA8', 'HemoVitalis':'#C97A6E',
+      'Nephroxil':'#5B7CA8', 'XL Man Pro':'#5B7CA8', 'Hemovitalis':'#C97A6E',
       'Bioactive Elixir':'#7E9FC5', 'Gastirix':'#C9A86E', 'Hepadetox':'#4A7C59',
-      'Pro Bio Tech':'#8C8C8C', 'Cardilex':'#A8443C', 'Drainalene':'#6B9BA8', 'Vaïotec':'#D08A4A'
+      'Pro Bio Tech':'#8C8C8C', 'Cardilex':'#A8443C', 'Drainalene':'#6B9BA8', 'Vaiotec':'#D08A4A'
     };
 
     var IMPORTANT = 'These products are not intended to diagnose, treat, cure or prevent any disease. Consult your physician if pregnant, breastfeeding, taking medication or managing a medical condition.';
 
     var KIT_DATA = {
       'vital-man': {
-        name: 'ALPHA VITALITY KIT', accent: '#5B7CA8',
+        name: 'ALPHA VITALITY KIT', accent: '#5B7CA8', price: 990,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Male strength. It starts from within.',
         ba: { before: ['Fatigue', 'Low libido', 'Prostate concerns'], after: ['Energy', 'Vitality', 'Male strength'] },
@@ -131,13 +132,13 @@
         ingredients: [
           { name: 'Nephroxil', role: 'deep support for kidneys, bladder and prostate.' },
           { name: 'XL Man Pro', role: 'libido, testosterone and circulation support.' },
-          { name: 'HemoVitalis', role: 'blood quality, energy and stamina.' },
+          { name: 'Hemovitalis', role: 'blood quality, energy and stamina.' },
           { name: 'Bioactive Elixir', role: 'natural minerals for cellular function and energy.' }
         ],
         important: IMPORTANT
       },
       'digestive-reset': {
-        name: 'GUT RESTORATION SYSTEM', accent: '#4A7C59',
+        name: 'GUT RESTORATION SYSTEM', accent: '#4A7C59', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'A healthy gut is the foundation of everything.',
         ba: { before: ['Bloating', 'Reflux', 'Heaviness after eating'], after: ['Lightness', 'Comfort', 'A healthy gut'] },
@@ -154,7 +155,7 @@
         important: IMPORTANT
       },
       'female-blood': {
-        name: 'FEMALE VITAL ESSENCE KIT', accent: '#C97A6E',
+        name: 'FEMALE VITAL ESSENCE KIT', accent: '#C97A6E', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Female vitality. Renewed from within.',
         ba: { before: ['Fatigue', 'Low energy', 'Heaviness'], after: ['Energy', 'Lightness', 'Female vitality'] },
@@ -163,7 +164,7 @@
         whoFor: 'Women dealing with fatigue, low energy, poor absorption, or a body that needs to rebuild healthy blood and gentle internal cleansing.',
         howToTake: '2 capsules 2-3 times daily with a small amount of water. See the packaging for the course and exact regimen, or check with a specialist.',
         ingredients: [
-          { name: 'HemoVitalis', role: 'builds blood and reduces fatigue.' },
+          { name: 'Hemovitalis', role: 'builds blood and reduces fatigue.' },
           { name: 'Gastirix', role: 'restores the stomach and supports healthy absorption.' },
           { name: 'Hepadetox', role: 'supports the liver and gentle internal detox.' },
           { name: 'Bioactive Elixir', role: 'minerals for blood and systemic balance.' }
@@ -171,7 +172,7 @@
         important: IMPORTANT
       },
       'calm-heart': {
-        name: 'INNER HARMONY KIT', accent: '#A8443C',
+        name: 'INNER HARMONY KIT', accent: '#A8443C', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'A quiet heart is a strong heart.',
         ba: { before: ['Anxiety', 'Restless sleep', 'Tension'], after: ['Calm', 'Deep sleep', 'A steady heart'] },
@@ -181,14 +182,14 @@
         howToTake: '2 capsules 2-3 times daily with a small amount of water. See the packaging for the course and exact regimen, or check with a specialist.',
         ingredients: [
           { name: 'Cardilex', role: 'calms and regulates heart rhythm.' },
-          { name: 'HemoVitalis', role: 'oxygenates the blood and supports the brain.' },
+          { name: 'Hemovitalis', role: 'oxygenates the blood and supports the brain.' },
           { name: 'Drainalene', role: 'reduces fluid load and eases the heart\u2019s work.' },
           { name: 'Bioactive Elixir', role: 'magnesium and minerals for the nervous system.' }
         ],
         important: IMPORTANT
       },
       'men-hair': {
-        name: 'HAIR REGENERATION SYSTEM', accent: '#5B7CA8',
+        name: 'HAIR REGENERATION SYSTEM', accent: '#5B7CA8', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Real growth starts beneath the surface.',
         ba: { before: ['Thinning hair', 'Low vitality', 'Fatigue'], after: ['Stronger hair', 'Energy', 'Vitality'] },
@@ -197,7 +198,7 @@
         whoFor: 'Men with increased hair loss, thinning or slowed growth.',
         howToTake: '2 capsules 2-3 times daily with a small amount of water. See the packaging for the course and exact regimen, or check with a specialist.',
         ingredients: [
-          { name: 'HemoVitalis', role: 'nourishes the hair roots through the blood.' },
+          { name: 'Hemovitalis', role: 'nourishes the hair roots through the blood.' },
           { name: 'XL Man Pro', role: 'hormonal support.' },
           { name: 'Nephroxil', role: 'reduces systemic strain.' },
           { name: 'Bioactive Elixir', role: 'zinc and minerals for hair growth.' }
@@ -205,7 +206,7 @@
         important: IMPORTANT
       },
       'aesthetic': {
-        name: 'AESTHETIC REGENERATION SYSTEM', accent: '#6B9BA8',
+        name: 'AESTHETIC REGENERATION SYSTEM', accent: '#6B9BA8', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Beauty is a biological process.',
         ba: { before: ['Dull skin', 'Slow recovery', 'Imbalance'], after: ['Glow', 'Renewal', 'Balance'] },
@@ -215,7 +216,7 @@
         howToTake: '2 capsules 2-3 times daily with a small amount of water. Pro Bio Tech, 1 capsule daily with or immediately after a meal, refrigerate after opening. See the packaging for the course and exact regimen, or check with a specialist.',
         ingredients: [
           { name: 'Hepadetox', role: 'internal cleansing.' },
-          { name: 'HemoVitalis', role: 'nourishes tissue through the blood.' },
+          { name: 'Hemovitalis', role: 'nourishes tissue through the blood.' },
           { name: 'Pro Bio Tech', role: 'restores the gut to skin axis.' },
           { name: 'Bioactive Elixir', role: 'collagen support, minerals and regeneration.' }
         ],
@@ -233,6 +234,7 @@
 
       panel.style.setProperty('--pp-accent', accent);
       elName.textContent = d.name;
+      if (elPrice && d.price != null) elPrice.innerHTML = d.price.toLocaleString('en-US') + '&nbsp;<span class="cur">&#8362;</span>';
       elSlogan.textContent = d.slogan;
       elTagline.textContent = d.tagline;
       elFocus.innerHTML = '<b>Focus:</b> ' + d.focus;
