@@ -866,6 +866,10 @@ section { position: relative; }
 /* Mobile only (<=768px): one tight vertical column. Order: logo, Shop, Company,
    Contact, then the long disclaimer demoted small to the bottom. Desktop intact. */
 @media (max-width: 768px) {
+  /* Fixed header must always sit above the scrolling content (iOS Safari can
+     otherwise paint sectional stacking contexts over a fixed sibling). */
+  .header { z-index: 1000; }
+
   .footer { padding: 52px 0 28px; }
   .footer-grid { display: flex; flex-direction: column; gap: 28px; margin-bottom: 30px; }
   .footer-brand { display: contents; }            /* let logo + disclaimer reorder as siblings */

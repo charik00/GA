@@ -156,7 +156,7 @@ const t = useTranslations('en');
       </div>
       <div class="kits-grid" id="kits-grid">
         {kits.map((k) => (
-          <article class="kit">
+          <article class="kit" data-slug={k.slug} style="cursor:pointer">
             <div class="kit-body">
               <h3>{k.name}</h3>
               <p class="kit-slogan">{k.slogan}</p>
@@ -237,6 +237,15 @@ const t = useTranslations('en');
       if ((e.target as HTMLElement).closest('a')) return; // let the Learn More link handle itself
       const name = card.getAttribute('data-name')!;
       window.location.href = '/products?item=' + encodeURIComponent(name);
+    });
+  });
+
+  // Clicking a kit card on Home opens that kit's quick-view on /kits (same as formulas)
+  document.querySelectorAll<HTMLElement>('.kit[data-slug]').forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) return;
+      const slug = card.getAttribute('data-slug')!;
+      window.location.href = '/kits?item=' + encodeURIComponent(slug);
     });
   });
 </script>

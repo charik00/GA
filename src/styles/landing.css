@@ -1262,4 +1262,20 @@
 
   /* (5) Hide the redhead-model + Stomavil photo block on mobile only */
   #articles .art-photo-wrap { display: none !important; }
+
+  /* Header overlap fix: drop the hero's own stacking context so the fixed
+     header (z-index above) reliably paints over the hero content on mobile. */
+  .hero { isolation: auto; }
+
+  /* Philosophy cards: lighter and shorter, content-height, tighter rhythm.
+     Numbers and titles stay prominent, body text a touch smaller and denser. */
+  #philosophy .phil-grid { gap: 14px; }
+  #philosophy .phil-card {
+    min-height: 0;
+    padding: 24px 22px;
+    gap: 12px;
+    border-color: rgba(255,255,255,0.12);
+  }
+  #philosophy .phil-card h3 { font-size: 22px; }
+  #philosophy .phil-card p { font-size: 13.5px; line-height: 1.6; }
 }

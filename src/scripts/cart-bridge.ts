@@ -62,12 +62,20 @@ document.addEventListener('click', (e) => {
 (function openFromQuery() {
   const item = new URLSearchParams(location.search).get('item');
   if (!item) return;
-  const target = decodeURIComponent(item).trim().toUpperCase();
+  const raw = decodeURIComponent(item).trim();
+  const target = raw.toUpperCase();
+  const targetLower = raw.toLowerCase();
   const open = () => {
-    const card = Array.from(document.querySelectorAll<HTMLElement>('.cat-c[data-name]')).find(
+    // formula quick-view (Products): match by name
+    const formula = Array.from(document.querySelectorAll<HTMLElement>('.cat-c[data-name]')).find(
       (c) => (c.getAttribute('data-name') || '').trim().toUpperCase() === target
     );
-    if (card) { card.click(); return true; }
+    if (formula) { formula.click(); return true; }
+    // kit quick-view (Kits): match by slug (data-kit)
+    const kit = Array.from(document.querySelectorAll<HTMLElement>('.kit-card[data-kit]')).find(
+      (c) => (c.getAttribute('data-kit') || '').trim().toLowerCase() === targetLower
+    );
+    if (kit) { kit.click(); return true; }
     return false;
   };
   // the inline quick-view script binds card listeners during parse; retry briefly
