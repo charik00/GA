@@ -73,13 +73,17 @@
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(24px, 3vw, 48px);
-  align-items: start;
+  /* stretch both cells to the row height so the purchase block can sit lower,
+     vertically centered against the taller left column (photo + before/after) */
+  align-items: stretch;
   margin-bottom: clamp(28px, 4vh, 48px);
 }
 .qv-top .pp-info { justify-content: center; }
 @media (max-width: 880px) {
-  .qv-top { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); }
+  /* single column on narrow screens: no extra height to distribute, keep it natural */
+  .qv-top { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); align-items: start; }
   .qv-left { max-width: 460px; }
+  .qv-top .pp-info { justify-content: flex-start; }
 }
 
 /* ---- purchase block, scoped to the drawer (does not touch product pages) ---- */
