@@ -1278,4 +1278,10 @@
   }
   #philosophy .phil-card h3 { font-size: 22px; }
   #philosophy .phil-card p { font-size: 13.5px; line-height: 1.6; }
+
+  /* "Read the full philosophy" CTA: white on cream is invisible. Match the
+     dark-outline treatment used by the other light-section buttons (#products). */
+  #philosophy .btn,
+  #philosophy .btn.ghost { color: var(--v7-ink); border-color: var(--v7-ink); }
+  #philosophy .btn:hover { background: var(--v7-ink); color: #FFFFFF; border-color: var(--v7-ink); }
 }
