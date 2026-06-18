@@ -73,19 +73,15 @@
   display: grid;
   grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   gap: clamp(24px, 3vw, 48px);
-  /* stretch both cells to the row height so the purchase block can sit lower,
-     vertically centered against the taller left column (photo + before/after) */
-  align-items: stretch;
+  /* top-align both columns: the right column flows top to bottom (title, tagline,
+     focus, then the purchase group) without stretching or distributing space */
+  align-items: start;
   margin-bottom: clamp(28px, 4vh, 48px);
 }
-/* name/tagline/focus pinned to the top (aligned with the photo), the price
-   group is pushed to the bottom via margin-top:auto on .pp-price-row */
 .qv-top .pp-info { justify-content: flex-start; }
 @media (max-width: 880px) {
-  /* single column on narrow screens: no extra height to distribute, keep it natural */
-  .qv-top { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); align-items: start; }
+  .qv-top { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); }
   .qv-left { max-width: 460px; }
-  .qv-top .pp-info { justify-content: flex-start; }
 }
 
 /* ---- purchase block, scoped to the drawer (does not touch product pages) ---- */
@@ -93,14 +89,14 @@
 .qv-panel .pp-name { margin: 0 0 12px; font-size: clamp(28px, 2.6vw, 38px); line-height: 1.08; }
 .qv-panel .pp-desc { margin: 0 0 16px; }
 .qv-panel .pp-tags { margin: 0 0 18px; }
-/* price + caption centered as their own group, pushed to the bottom of the
-   column (clear gap below FOCUS); falls back to a fixed gap on mobile */
-.qv-panel .pp-price-row { margin: auto 0 10px; gap: 6px; width: 100%; align-items: center; text-align: center; }
+/* purchase group: price, caption, button and badges read as one tight block.
+   modest gap above (from FOCUS), small equal gaps between the members */
+.qv-panel .pp-price-row { margin: 6px 0 0; gap: 4px; width: 100%; align-items: center; text-align: center; }
 /* single centered Add to cart button (View formulas removed in the new design) */
-.qv-panel .pp-actions { width: 100%; justify-content: center; margin: 30px 0 9px; }
+.qv-panel .pp-actions { width: 100%; justify-content: center; margin: 14px 0 0; }
 .qv-panel .pp-actions .pp-btn { flex: 0 1 auto; width: auto; min-width: 240px; padding: 0 52px; margin: 0 auto; }
-/* certifications: small, centered, directly under the button */
-.qv-panel .pp-cert { display: flex; justify-content: center; width: 100%; font-size: 10px; letter-spacing: 0.22em; opacity: 0.75; }
+/* certifications: small, centered, tucked directly under the button */
+.qv-panel .pp-cert { display: flex; justify-content: center; width: 100%; margin: 12px 0 0; font-size: 10px; letter-spacing: 0.22em; opacity: 0.75; }
 /* slogan dash removed in the drawer, accent carried by the top strip + tab underline */
 .qv-panel .pp-bar { display: none; }
 /* shekel sits smaller, on the baseline of the digits */
