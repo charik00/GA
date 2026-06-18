@@ -23,7 +23,7 @@
 
   .kit-card {
     display: flex; flex-direction: column;
-    background: var(--p-cream); border: 1px solid var(--p-line);
+    background: #F4EEE3; border: 1px solid var(--p-line);
     border-radius: 6px; overflow: hidden; cursor: pointer;
     text-align: left; padding: 0; font: inherit; color: inherit;
     box-shadow: 0 12px 30px -24px rgba(26,26,26,0.22);
@@ -45,32 +45,39 @@
     color: var(--p-muted); opacity: 0.7;
   }
 
-  /* ===== bottle-cover variant (4 transparent bottles on linen botanical bg) ===== */
-  .kit-photo.has-bottles { background: var(--p-cream-2); background-image: none; container-type: size; }
-  .kit-photo.has-bottles .kit-cover-bg {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center; display: block; z-index: 0; max-width: none; max-height: none;
+  /* ===== bottle-cover variant: bottles sit on the card surface, quiet (no linen backdrop) ===== */
+  .kit-photo.has-bottles {
+    aspect-ratio: 20 / 11; background: transparent; background-image: none;
+    container-type: size; overflow: visible;
   }
+  /* botanical backdrop removed for a quiet, premium surface */
+  .kit-photo.has-bottles .kit-cover-bg { display: none; }
   .kit-photo.has-bottles .kit-bottles {
     position: absolute; inset: 0; z-index: 1;
-    display: flex; align-items: flex-end; justify-content: center;
-    padding: 0 5cqw 7cqh; box-sizing: border-box;
+    display: flex; align-items: flex-end; justify-content: center; gap: 0;
+    padding: 0 3cqw 9cqh; box-sizing: border-box;
+  }
+  /* pull the bottles into one tight, centered group (PNGs carry wide transparent margins) */
+  .kit-photo.has-bottles .kit-bottle + .kit-bottle { margin-left: -6cqw; }
+  /* soft contact shadow so the group sits on the surface, not floating */
+  .kit-photo.has-bottles::after {
+    content: ""; position: absolute; left: 20cqw; right: 20cqw; bottom: 6cqh; height: 5cqh;
+    z-index: 0; border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(26,26,26,0.22) 0%, rgba(26,26,26,0.11) 45%, rgba(26,26,26,0) 72%);
+    filter: blur(3px);
   }
   .kit-photo.has-bottles .kit-bottle {
-    height: 60cqh; width: auto; max-width: none; max-height: none; object-fit: contain; display: block;
-    filter: drop-shadow(0 7px 11px rgba(26,26,26,0.22));
+    height: 64cqh; width: auto; max-width: none; max-height: none; object-fit: contain; display: block;
+    transform: none;
+    filter: drop-shadow(0 6px 7px rgba(26,26,26,0.16));
   }
-  .kit-photo.has-bottles .kit-bottle + .kit-bottle { margin-left: -14cqw; }
-  /* gentle vertical stagger for depth */
-  .kit-photo.has-bottles .kit-bottle:nth-child(odd)  { transform: translateY(-3cqh); }
-  .kit-photo.has-bottles .kit-bottle:nth-child(even) { transform: translateY(3cqh); }
 
-  .kit-body { padding: clamp(18px, 1.7vw, 24px); display: flex; flex-direction: column; gap: 9px; }
+  .kit-body { padding: clamp(16px, 1.5vw, 22px) clamp(18px, 1.7vw, 24px) clamp(18px, 1.7vw, 24px); display: flex; flex-direction: column; gap: 7px; }
   .kit-card-bar { width: 38px; height: 3px; border-radius: 2px; background: var(--kit-accent); }
-  .kit-card-name { font-family: var(--display); font-size: clamp(26px, 2.2vw, 32px); font-weight: 500; line-height: 1.04; color: var(--p-ink); min-height: 2.08em; display: flex; align-items: flex-start; }
+  .kit-card-name { font-family: var(--display); font-size: clamp(26px, 2.2vw, 32px); font-weight: 500; line-height: 1.04; color: var(--p-ink); min-height: 2.08em; display: flex; align-items: flex-start; margin-top: 2px; }
   .kit-card-tag { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(16px, 1.3vw, 19px); line-height: 1.3; color: var(--p-muted); }
   .kit-card-formulas {
-    margin-top: 6px; padding-top: 13px; border-top: 1px solid var(--p-line);
+    margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--p-line);
     font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; font-weight: 500;
     letter-spacing: 0.07em; text-transform: uppercase; color: var(--p-muted); line-height: 1.7;
   }

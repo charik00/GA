@@ -124,7 +124,7 @@
         name: 'ALPHA VITALITY KIT', accent: '#5B7CA8', price: 990,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Male strength. It starts from within.',
-        ba: { before: ['Fatigue', 'Low libido', 'Prostate concerns'], after: ['Energy', 'Vitality', 'Male strength'] },
+        ba: { before: ['Fatigue', 'Low libido', 'Prostate concerns'], after: ['Energy', 'Vitality', 'Confidence'] },
         focus: 'Kidneys, prostate, testosterone, energy, vitality.',
         description: 'Designed for the modern man, this premium vitality system supports libido, masculine performance, hormonal balance, circulation, prostate wellness, and natural energy production. By combining powerful botanical ingredients with essential minerals, it helps reignite vitality, restore confidence, enhance endurance, and support peak male wellness from the inside out.',
         whoFor: 'Men focused on prostate health, energy, sexual vitality and longevity.',
@@ -141,7 +141,7 @@
         name: 'GUT RESTORATION SYSTEM', accent: '#4A7C59', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'A healthy gut is the foundation of everything.',
-        ba: { before: ['Bloating', 'Reflux', 'Heaviness after eating'], after: ['Lightness', 'Comfort', 'A healthy gut'] },
+        ba: { before: ['Bloating', 'Reflux', 'Heaviness after eating'], after: ['Lightness', 'Comfort', 'Balance'] },
         focus: 'Stomach, absorption, acidity, microbiome.',
         description: 'Optimal health begins in the digestive system. This advanced formula combination supports stomach comfort, digestive balance, liver function, nutrient absorption, and intestinal microbiome health. Designed to help create the foundation for improved wellness, energy, and overall body performance.',
         whoFor: 'Those experiencing reflux, bloating, absorption issues, IBS, or seeking to build a healthy foundation for any restorative process.',
@@ -158,7 +158,7 @@
         name: 'FEMALE VITAL ESSENCE KIT', accent: '#C97A6E', price: 890,
         slogan: 'Systemic Kit · 4 Formulas',
         tagline: 'Female vitality. Renewed from within.',
-        ba: { before: ['Fatigue', 'Low energy', 'Heaviness'], after: ['Energy', 'Lightness', 'Female vitality'] },
+        ba: { before: ['Fatigue', 'Low energy', 'Heaviness'], after: ['Energy', 'Lightness', 'Resilience'] },
         focus: 'Blood, energy, internal cleansing, vitality.',
         description: 'A premium wellness program created to support female vitality, healthy circulation, hormonal harmony, reproductive wellness, emotional balance, and natural energy levels. Designed for women seeking greater resilience, balance, and long-term wellness from within.',
         whoFor: 'Women dealing with fatigue, low energy, poor absorption, or a body that needs to rebuild healthy blood and gentle internal cleansing.',
@@ -238,7 +238,7 @@
       elSlogan.textContent = d.slogan;
       elTagline.textContent = d.tagline;
       elFocus.innerHTML = '<b>Focus:</b> ' + d.focus;
-      elPriceSub.textContent = d.priceSub || (d.ingredients.length + ' formulas · complete system');
+      elPriceSub.textContent = d.priceSub || 'Complete system';
 
       // tab: description
       elTabDesc.textContent = d.description || '';

@@ -32,6 +32,14 @@
 .qv-cover { position: absolute; inset: 0; z-index: 1; }
 .qv-cover .kit-photo { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; border-radius: 0; }
 .qv-cover .kit-photo::before { display: none; }
+/* the drawer media box is taller/narrower than the card zone, so size the bottle
+   group down here to keep all four inside with comfortable margins */
+.qv-cover .kit-photo.has-bottles .kit-bottle { height: 50cqh; filter: drop-shadow(0 10px 12px rgba(26,26,26,0.20)); }
+.qv-cover .kit-photo.has-bottles .kit-bottles { padding-bottom: 11cqh; }
+.qv-cover .kit-photo.has-bottles::after {
+  bottom: 8cqh; left: 20cqw; right: 20cqw; height: 6cqh;
+  background: radial-gradient(ellipse at center, rgba(26,26,26,0.26) 0%, rgba(26,26,26,0.13) 45%, rgba(26,26,26,0) 72%);
+}
 
 /* ---- left column: cover + before/after stacked ---- */
 .qv-left { display: flex; flex-direction: column; gap: clamp(18px, 2.6vh, 30px); min-width: 0; }
@@ -80,7 +88,9 @@
 .qv-panel .pp-desc { margin: 0 0 16px; }
 .qv-panel .pp-tags { margin: 0 0 18px; }
 .qv-panel .pp-price-row { margin-bottom: 16px; }
-.qv-panel .pp-actions { margin-bottom: 14px; }
+/* single centered Add to cart button (View formulas removed in the new design) */
+.qv-panel .pp-actions { width: 100%; justify-content: center; margin: 30px 0 9px; }
+.qv-panel .pp-actions .pp-btn { flex: 0 1 auto; width: auto; min-width: 240px; padding: 0 52px; margin: 0 auto; }
 /* slogan dash removed in the drawer, accent carried by the top strip + tab underline */
 .qv-panel .pp-bar { display: none; }
 .qv-panel .pp-price .cur { font-size: 0.55em; vertical-align: baseline; color: inherit; }
