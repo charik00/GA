@@ -873,3 +873,9 @@
     .ph-cta .btn {
       font-family: 'Montserrat', system-ui, sans-serif !important;
     }
+
+    /* Product formula modal: remove the thin colored accent strip along the top
+       edge of the bottle image. Scoped to the open quick-view (.qv-overlay) only,
+       so catalog grid preview cards (.cat-photo) and the colored bar elsewhere
+       are untouched. */
+    .qv-overlay .qv-media::before { display: none; }
