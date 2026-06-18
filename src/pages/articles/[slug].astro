@@ -3,16 +3,23 @@ import Layout from '../../layouts/Layout.astro';
 import '../../styles/blocks/ga-faq-style.css';
 import '../../styles/blocks/ga-doc-style.css';
 import '../../styles/pages/article.css';
-import html from '../../content/article.html?raw';
+import part1 from '../../content/article-part1.html?raw';
+import part2 from '../../content/article-part2.html?raw';
 import js from '../../scripts/article.js?raw';
 import { articles } from '../../data/catalog';
 
+// Full verbatim bodies, one per article slug.
+const bodies: Record<string, string> = {
+  'not-what-we-thought-part-1': part1,
+  'not-what-we-thought-part-2': part2,
+};
+
 export function getStaticPaths() {
-  // Both articles render the one designed article body for now.
-  // TODO(client/design): supply the Part 2 body; then split content per slug.
   return articles.map((a) => ({ params: { slug: a.slug }, props: { title: a.title } }));
 }
 const { title } = Astro.props;
+const { slug } = Astro.params;
+const html = bodies[slug as string] ?? part1;
 ---
 
 <Layout title={`${title}, Genetic Analyze`} active="articles">
