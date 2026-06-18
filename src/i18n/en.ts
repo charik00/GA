@@ -87,7 +87,7 @@ export const en = {
   'footer.shop': 'Shop',
   'footer.shop.1': 'All Formulas',
   'footer.shop.2': 'Kits & Protocols',
-  'footer.about': 'House',
+  'footer.about': 'Company',
   'footer.about.1': 'Philosophy',
   'footer.about.3': 'Articles',
   'footer.faq': 'FAQ',

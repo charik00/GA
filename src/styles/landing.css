@@ -1228,10 +1228,6 @@
    MOBILE-ONLY refinements (phones, <=768px). Desktop/tablet unchanged.
    ============================================================ */
 @media (max-width: 768px) {
-  /* (1)+(2) Hero: drop the duplicate text credentials. The same set is shown
-     as the icon tile in the .trust section below, and removing the text block
-     stops it from overlapping the botanical photo. */
-  .hero .hero-trust { display: none !important; }
   /* keep the subtitle firmly readable on the light hero */
   .hero .hero-sub { color: #141414 !important; font-weight: 500; }
 
