@@ -87,15 +87,21 @@
 .qv-panel .pp-name { margin: 0 0 12px; font-size: clamp(28px, 2.6vw, 38px); line-height: 1.08; }
 .qv-panel .pp-desc { margin: 0 0 16px; }
 .qv-panel .pp-tags { margin: 0 0 18px; }
-.qv-panel .pp-price-row { margin-bottom: 16px; }
+/* price + caption centered as their own group, pulled up under the title */
+.qv-panel .pp-price-row { margin: -18px 0 10px; gap: 6px; width: 100%; align-items: center; text-align: center; }
 /* single centered Add to cart button (View formulas removed in the new design) */
 .qv-panel .pp-actions { width: 100%; justify-content: center; margin: 30px 0 9px; }
 .qv-panel .pp-actions .pp-btn { flex: 0 1 auto; width: auto; min-width: 240px; padding: 0 52px; margin: 0 auto; }
+/* certifications: small, centered, directly under the button */
+.qv-panel .pp-cert { display: flex; justify-content: center; width: 100%; font-size: 10px; letter-spacing: 0.22em; opacity: 0.75; }
 /* slogan dash removed in the drawer, accent carried by the top strip + tab underline */
 .qv-panel .pp-bar { display: none; }
-.qv-panel .pp-price .cur { font-size: 0.55em; vertical-align: baseline; color: inherit; }
-.qv-panel .pp-price { font-size: clamp(24px, 2.1vw, 33px); font-weight: 400; }
-.qv-panel .pp-price-sub { font-size: 13.5px; }
+/* shekel sits smaller, on the baseline of the digits */
+.qv-panel .pp-price .cur { font-size: 0.5em; vertical-align: baseline; color: inherit; margin-left: 0.06em; }
+/* drawer price: large, present, still light weight */
+.qv-panel .pp-price { font-size: clamp(34px, 3.1vw, 48px); font-weight: 400; }
+/* caption reads as a small muted label tucked under the price */
+.qv-panel .pp-price-sub { font-size: 11px; letter-spacing: 0.14em; color: var(--p-muted); margin-top: 2px; }
 
 /* drawer accents follow the kit's own color, not brand amber */
 .qv-panel .pp-tab { transition: none; }
@@ -108,7 +114,7 @@
 .qv-panel .pp-tablist { gap: clamp(8px, 0.9vw, 13px); flex-wrap: nowrap; }
 .qv-panel .pp-tab { font-size: 12.5px; letter-spacing: 0.03em; white-space: nowrap; }
 .qv-panel .pp-ptext p { font-size: clamp(17px, 1.25vw, 18.5px); }
-.qv-panel .pp-ptext p.qv-important { font-size: 14px; }
+.qv-panel .pp-ptext p.qv-important { font-size: clamp(17px, 1.25vw, 18.5px); }
 
 .qv-tabs-wrap { margin-top: 0; padding-top: clamp(24px, 3vh, 36px); border-top: 1px solid var(--p-line); }
 
@@ -123,3 +129,7 @@
 }
 .qv-panel .kit-focus b { font-weight: 600; color: var(--p-graphite); letter-spacing: 0.04em; text-transform: uppercase; font-size: 0.8em; margin-right: 4px; }
 .qv-panel .pp-btn.ghost:hover { background: var(--pp-accent); border-color: var(--pp-accent); color: #FAF7F2; }
+
+/* Kit formulas tab: name and role stack (they were inline and ran together) */
+.qv-panel .kit-inside .ki-name { display: block; }
+.qv-panel .kit-inside .ki-role { display: block; margin-top: 4px; }
