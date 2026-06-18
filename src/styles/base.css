@@ -890,9 +890,8 @@ section { position: relative; }
     font-family: var(--sans); font-size: 11.5px; letter-spacing: normal;
     text-transform: none; line-height: 1.5;
   }
-  /* hide the trailing separator dot, the duplicate language switcher, and the
-     "Crafted patiently" copyright tail on mobile (lang lives in the header) */
-  .footer-bottom > div > span { display: none; }
+  /* hide the "Crafted patiently" copyright tail on mobile */
+  .footer-craft { display: none; }
 }
 
 /* ---------- placeholder helpers ---------- */

@@ -11,7 +11,7 @@ const dictionaries: Record<Locale, Record<string, string>> = {
 export const languages: { code: string; label: string; enabled: boolean }[] = [
   { code: 'en', label: 'EN', enabled: true },
   { code: 'ru', label: 'RU', enabled: false },
-  { code: 'he', label: 'HE', enabled: false },
+  // Hebrew (HE) temporarily removed from the switcher; re-add when the locale lands.
 ];
 
 export const defaultLocale: Locale = 'en';

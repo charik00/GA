@@ -1,5 +1,5 @@
 ---
-import { useTranslations, languages, type Locale } from '../i18n';
+import { useTranslations, type Locale } from '../i18n';
 interface Props { locale?: Locale }
 const { locale = 'en' } = Astro.props;
 const t = useTranslations(locale);
@@ -53,15 +53,6 @@ const address = '6 HaRimonim St., Rosh Pina, Israel';
         <a href="/privacy">{t('footer.priv')}</a>
         <a href="/terms">{t('footer.terms')}</a>
         <a href="#" data-cookie-settings>{t('footer.cookie')}</a>
-        <span style="color:var(--line)">·</span>
-        <span class="lang">
-          {languages.map((l, i) => (
-            <>
-              {i > 0 && <span class="sep">/</span>}
-              <button data-lang={l.code} class={l.code === locale ? 'on' : undefined} aria-disabled={l.enabled ? undefined : 'true'}>{l.label}</button>
-            </>
-          ))}
-        </span>
       </div>
     </div>
   </div>
