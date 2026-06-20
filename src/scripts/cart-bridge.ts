@@ -43,10 +43,14 @@ document.addEventListener('click', (e) => {
   const digits = priceText.replace(/[^\d]/g, '');
   const price = digits ? parseInt(digits, 10) : null;
 
-  const isKit = /\bkit\b/i.test(name);
+  // Kits: some names are "... System" without the word "kit", so also treat any
+  // add from /kits as a kit. Kits have no single product photo, the kit visual on
+  // /kits is the wooden gift box, so use it as the cart thumbnail for all kits.
+  const isKit = /\bkit\b/i.test(name) || location.pathname.startsWith('/kits');
   const imgEl =
     (box.querySelector('#qv-photo') as HTMLImageElement | null) ||
     (box.querySelector('img') as HTMLImageElement | null);
+  const img = isKit ? 'images/kits-wooden-box.jpg' : relImg(imgEl?.src);
 
   window.GACart.add({
     id: slugify(name),
@@ -54,7 +58,7 @@ document.addEventListener('click', (e) => {
     kind: isKit ? 'Kit' : 'Formula',
     price,
     qty: 1,
-    img: relImg(imgEl?.src),
+    img,
   });
 });
 

@@ -76,7 +76,7 @@ const t = useTranslations(locale);
         const unit = hasPrice ? `${fmt(it.price as number)} ₪ ${T.each}` : T.request;
         const line = hasPrice ? `${fmt((it.price as number) * it.qty)} ₪` : T.request;
         return `<div class="ga-cart-item">
-          <span class="ga-cart-thumb"><img src="/${it.img}" alt="${it.name}"/></span>
+          <span class="ga-cart-thumb"><img src="/${it.img}" alt="${it.name}" onerror="this.onerror=null;this.src='/images/kits-wooden-box.jpg'"/></span>
           <span class="ga-cart-info"><span class="ga-cart-nm">${it.name}</span><span class="ga-cart-kind">${it.kind}</span><span class="ga-cart-unit">${unit}</span>
           <span class="ga-cart-qty"><button type="button" data-dec="${idx}" aria-label="Decrease quantity">−</button><span class="n">${it.qty}</span><button type="button" data-inc="${idx}" aria-label="Increase quantity">+</button></span></span>
           <span class="ga-cart-right"><button class="ga-cart-rm" type="button" data-rm="${idx}" aria-label="Remove ${it.name}">✕</button><span class="ga-cart-line">${line}</span></span>
