@@ -112,9 +112,9 @@
     var DISCLAIMER = 'This is a dietary supplement, not a medicine, and does not replace treatment prescribed by a doctor. Consult a specialist before use, especially if pregnant, breastfeeding, taking medication, or managing a medical condition.';
 
     var FC = {
-      'Nephroxil':'#5B7CA8', 'XL Man Pro':'#5B7CA8', 'Hemovitalis':'#C97A6E',
-      'Bioactive Elixir':'#7E9FC5', 'Gastirix':'#C9A86E', 'Hepadetox':'#4A7C59',
-      'Pro Bio Tech':'#8C8C8C', 'Cardilex':'#A8443C', 'Drainalene':'#6B9BA8', 'Vaiotec':'#D08A4A'
+      'Nephroxil':'#5E86B4', 'XL Man Pro':'#007FB4', 'Hemovitalis':'#F47D76',
+      'Bioactive Elixir':'#00AEEF', 'Gastirix':'#FFF200', 'Hepadetox':'#00A850',
+      'Pro Bio Tech':'#FFFFFF', 'Cardilex':'#EF483F', 'Drainalene':'#5BB7D3', 'Vaiotec':'#CF915D'
     };
 
     var IMPORTANT = 'These products are not intended to diagnose, treat, cure or prevent any disease. Consult your physician if pregnant, breastfeeding, taking medication or managing a medical condition.';
