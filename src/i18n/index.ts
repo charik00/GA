@@ -14,6 +14,10 @@ export const languages: { code: string; label: string; enabled: boolean }[] = [
   // Hebrew (HE) temporarily removed from the switcher; re-add when the locale lands.
 ];
 
+/** TEMPORARY: hide the language switcher (header + mobile) while only the English
+ *  version is ready. Flip back to `true` once RU/HE are added to restore it. */
+export const SHOW_LANGUAGE_SWITCHER = false;
+
 export const defaultLocale: Locale = 'en';
 
 /** Returns a translator bound to a locale. Falls back to EN, then to the key. */

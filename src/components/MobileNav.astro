@@ -1,5 +1,5 @@
 ---
-import { useTranslations, languages, type Locale } from '../i18n';
+import { useTranslations, languages, SHOW_LANGUAGE_SWITCHER, type Locale } from '../i18n';
 interface Props {
   active?: 'home' | 'products' | 'kits';
   locale?: Locale;
@@ -28,6 +28,7 @@ const t = useTranslations(locale);
       <a href="/faq">{t('footer.faq')}</a>
       <a href="/contact">{t('nav.contact')}</a>
     </nav>
+    {SHOW_LANGUAGE_SWITCHER && (
     <div class="ga-sheet-lang" role="group" aria-label="Language">
       {languages.map((l, i) => (
         <>
@@ -36,6 +37,7 @@ const t = useTranslations(locale);
         </>
       ))}
     </div>
+    )}
     <div class="ga-sheet-legal">
       <a href="/privacy">{t('footer.priv')}</a><span class="sep">·</span>
       <a href="/terms">{t('footer.terms')}</a>
