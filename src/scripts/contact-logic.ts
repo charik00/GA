@@ -1,5 +1,5 @@
 /* Contact form: validates required fields, submits the message to /api/contact
- * (Web3Forms, to ok@drkaholi.com), shows a confirmation, and degrades gracefully
+ * (Web3Forms, to info@geneticanalyze.com), shows a confirmation, and degrades gracefully
  * with a clear message when the Web3Forms key is not configured. */
 const form = document.getElementById('ct-form') as HTMLFormElement | null;
 const status = document.getElementById('ct-status');
@@ -46,12 +46,12 @@ form?.addEventListener('submit', async (e) => {
       form.reset();
     } else if (res.ok && data.ok && data.delivered === false) {
       // endpoint reachable but email channel not configured yet
-      show('Message form is not connected yet. Meanwhile, please email ok@drkaholi.com or use WhatsApp.', 'info');
+      show('Message form is not connected yet. Meanwhile, please email info@geneticanalyze.com or use WhatsApp.', 'info');
     } else {
       throw new Error('submit failed');
     }
   } catch {
-    show('Something went wrong sending the message. Please email ok@drkaholi.com directly.', 'error');
+    show('Something went wrong sending the message. Please email info@geneticanalyze.com directly.', 'error');
   } finally {
     if (btn) { btn.disabled = false; btn.style.opacity = ''; }
   }

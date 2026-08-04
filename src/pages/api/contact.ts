@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 
 // Serverless: receives a contact message and forwards it to the manager by
-// email (Web3Forms) to ok@drkaholi.com. Key comes from env; degrades gracefully.
+// email (Web3Forms) to info@geneticanalyze.com. Key comes from env; degrades gracefully.
 export const prerender = false;
 
 interface ContactPayload {
@@ -57,7 +57,7 @@ export const POST: APIRoute = async ({ request }) => {
         subject: `Contact message, ${p.name}`,
         from_name: 'Genetic Analyze website',
         replyto: p.email,
-        to: env('ORDER_EMAIL_TO') || 'ok@drkaholi.com',
+        to: env('ORDER_EMAIL_TO') || 'info@geneticanalyze.com',
         message: text,
       }),
     });

@@ -74,8 +74,8 @@ export const articles: Article[] = [
   {
     slug: 'not-what-we-thought-part-1',
     eyebrow: '— 01 / FOUNDATIONS',
-    title: 'Not What We Thought · Part 1',
-    excerpt: 'Why modern pharmacology falls short with chronic conditions, and what is wrong with the logic',
+    title: 'Medicine & Supplements: What We May Have Overlooked · Part I',
+    excerpt: 'Why improving a laboratory value is not always the same as improving health.',
     time: '10 MIN READ',
     cover: 'uploads/GAarticles/GA_article_cover_part1.jpg',
     href: '/articles/not-what-we-thought-part-1',
@@ -83,8 +83,8 @@ export const articles: Article[] = [
   {
     slug: 'not-what-we-thought-part-2',
     eyebrow: '— 02 / FOUNDATIONS',
-    title: 'Not What We Thought · Part 2',
-    excerpt: 'Chinese pharmacology, 5,000 years of clinical experience and why it matters more than you think',
+    title: 'Medicine & Supplements: What We May Have Overlooked · Part II',
+    excerpt: 'What traditional botanical medicine understood long before modern laboratories.',
     time: '10 MIN READ',
     cover: 'uploads/GAarticles/GA_article_cover_part2.jpg',
     href: '/articles/not-what-we-thought-part-2',

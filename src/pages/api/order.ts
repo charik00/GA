@@ -117,7 +117,7 @@ function customerHtml(o: OrderPayload): string {
       </div>
       <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.7;color:#3E3E3E;margin:0 0 4px">
         Any questions in the meantime? Simply reply to this email or reach us at
-        <a href="mailto:ok@drkaholi.com" style="color:#C8862F">ok@drkaholi.com</a>.
+        <a href="mailto:info@geneticanalyze.com" style="color:#C8862F">info@geneticanalyze.com</a>.
       </p>
     </div>
     <div style="padding:22px 32px 30px;border-top:1px solid #E5DFD5;text-align:center">
